@@ -63,9 +63,16 @@ export default function TopNavigation({ navigation, language, onLanguageChange }
             <div className="flex-shrink-0">
               <button
                 onClick={() => handleNavClick('#home', 'home')}
-                className="text-xl font-bold text-primary hover:text-primary/80 transition-colors"
+                className="flex items-center space-x-3 hover:opacity-80 transition-opacity"
               >
-                Benson Wong
+                <img
+                  src="/images/benson-logo.png"
+                  alt="Benson Wong Career Coach Logo"
+                  className="w-8 h-8 sm:w-10 sm:h-10 object-contain"
+                />
+                <span className="text-xl font-bold text-primary">
+                  Benson Wong
+                </span>
               </button>
             </div>
 

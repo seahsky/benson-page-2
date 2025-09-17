@@ -40,8 +40,12 @@ export default function HeroSection({ content, language }: HeroSectionProps) {
       <div className="relative z-10 container-custom section-padding text-center text-white">
         {/* Professional Avatar/Logo Space */}
         <div className="mb-8 flex justify-center">
-          <div className="w-32 h-32 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full flex items-center justify-center shadow-xl">
-            <Award className="w-16 h-16 text-secondary" />
+          <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105">
+            <img
+              src="/images/benson-image.png"
+              alt="Benson Wong - ICF ACC Certified Career Coach"
+              className="w-full h-full object-cover"
+            />
           </div>
         </div>
 
