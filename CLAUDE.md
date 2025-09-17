@@ -44,7 +44,7 @@ npm run dev
 
 ### 🔗 Integration & Platform
 - **[Wix Deployment](./docs/integration/wix-deployment.md)** - Platform requirements and deployment process
-- **[Contact Integration](./docs/integration/contact-integration.md)** - WhatsApp, forms, and communication channels
+- **[Contact Integration](./docs/integration/contact-integration.md)** - Social media buttons and direct messaging (NO forms)
 - **[Performance Optimization](./docs/integration/performance-optimization.md)** - Build optimization and Core Web Vitals
 
 ### 🔧 Operations & Maintenance
@@ -64,7 +64,7 @@ npm run dev
 ### Key Features
 - **Bilingual Support**: English and Chinese (Simplified/Traditional)
 - **Responsive Design**: Mobile-first approach with 6 breakpoints
-- **Contact Integration**: WhatsApp Business, LINE, Facebook, Threads
+- **Direct Social Media Contact**: WhatsApp Business, LINE, Facebook, Threads (NO forms)
 - **Performance Optimized**: <500KB bundle, <2.5s LCP, Wix compatible
 - **Accessibility**: WCAG 2.1 AA compliant
 
@@ -82,6 +82,27 @@ benson-page-2/
 ├── docs/                 # Modular documentation
 └── public/               # Static assets
 ```
+
+## 🎯 CTA Strategy - Social Media Only
+
+### IMPORTANT: No Contact Forms or Email Collection
+- **ALL call-to-actions must direct to social media channels**
+- **NO contact forms** should be implemented on the website
+- **NO email collection** forms or newsletter signups
+- **ONLY social media links** serve as conversion points
+
+### Approved CTA Channels (Priority Order):
+1. **WhatsApp**: Direct message link with pre-filled text
+2. **LINE**: Profile link for instant messaging
+3. **Facebook**: Business page for messaging and reviews
+4. **Threads**: Professional updates (not direct CTA)
+
+### Implementation Guidelines:
+- Use prominent social media buttons as primary CTAs
+- Include social links in hero section, footer, and after key content
+- Pre-fill WhatsApp messages with context-specific text
+- Track all social media clicks for conversion metrics
+- No intermediate forms or data collection steps
 
 ## 🌐 Essential Information
 

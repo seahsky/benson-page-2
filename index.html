@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Benson Wong - ICF ACC Certified Career Coach providing professional career coaching and job application coaching for Chinese-speaking professionals in Australia." />
+    <meta name="keywords" content="career coach, job application coaching, Chinese speaking, Australia, ICF ACC certified" />
+    <title>Benson Wong - Career Coach Australia</title>
+
+    <!-- Preload critical fonts -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"></noscript>
+
+    <!-- Critical CSS variables -->
+    <style>
+      :root {
+        --primary: #3b117b;
+        --secondary: #ffe74c;
+        --background: #ffffff;
+        --foreground: #171717;
+        --border: #e5e5e5;
+        --radius: 0.5rem;
+      }
+
+      /* Prevent FOUC */
+      body {
+        font-family: system-ui, -apple-system, sans-serif;
+        background-color: var(--background);
+        color: var(--foreground);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
