@@ -1,17 +1,18 @@
-import { useState } from 'react'
-import { content, type Language } from '@/data/content'
-import TopNavigation from './components/TopNavigation'
-import HeroSection from './components/HeroSection'
-import ServiceShowcase from './components/ServiceShowcase'
-import PricingSection from './components/PricingSection'
-import SuccessStories from './components/SuccessStories'
-import ProfessionalAuthority from './components/ProfessionalAuthority'
-import AdditionalOfferings from './components/AdditionalOfferings'
-import CommunityConnection from './components/CommunityConnection'
+import { useState } from "react";
+import { content, type Language } from "@/data/content";
+import TopNavigation from "./components/TopNavigation";
+import HeroSection from "./components/HeroSection";
+import CoreBenefits from "./components/CoreBenefits";
+import ServiceShowcase from "./components/ServiceShowcase";
+import PricingSection from "./components/PricingSection";
+import SuccessStories from "./components/SuccessStories";
+import ProfessionalAuthority from "./components/ProfessionalAuthority";
+import AdditionalOfferings from "./components/AdditionalOfferings";
+import CommunityConnection from "./components/CommunityConnection";
 
 export default function ExecutiveWisdom() {
-  const [language, setLanguage] = useState<Language>('en')
-  const currentContent = content[language]
+  const [language, setLanguage] = useState<Language>("en");
+  const currentContent = content[language];
 
   return (
     <div className="min-h-screen bg-background">
@@ -29,17 +30,34 @@ export default function ExecutiveWisdom() {
 
       {/* Professional Authority - Why Benson */}
       <section id="why-benson">
-        <ProfessionalAuthority content={currentContent.authority} language={language} />
+        <ProfessionalAuthority
+          content={currentContent.authority}
+          language={language}
+        />
+      </section>
+
+      {/* Core Benefits */}
+      <section id="core-benefits">
+        <CoreBenefits
+          content={currentContent.coreBenefits}
+          language={language}
+        />
       </section>
 
       {/* Services Showcase */}
       <section id="services">
-        <ServiceShowcase content={currentContent.services} language={language} />
+        <ServiceShowcase
+          content={currentContent.services}
+          language={language}
+        />
       </section>
 
       {/* Success Stories */}
       <section id="success-stories">
-        <SuccessStories content={currentContent.successStories} language={language} />
+        <SuccessStories
+          content={currentContent.successStories}
+          language={language}
+        />
       </section>
 
       {/* Pricing Section - Fees */}
@@ -48,14 +66,21 @@ export default function ExecutiveWisdom() {
       </section>
 
       {/* Additional Offerings - Only show if Chinese and items exist */}
-      {language === 'zh' && currentContent.additionalOfferings.courses.length > 0 && (
-        <section id="additional-courses">
-          <AdditionalOfferings content={currentContent.additionalOfferings} language={language} />
-        </section>
-      )}
+      {language === "zh" &&
+        currentContent.additionalOfferings.courses.length > 0 && (
+          <section id="additional-courses">
+            <AdditionalOfferings
+              content={currentContent.additionalOfferings}
+              language={language}
+            />
+          </section>
+        )}
 
       {/* Community Connection */}
-      <CommunityConnection content={currentContent.contact} language={language} />
+      <CommunityConnection
+        content={currentContent.contact}
+        language={language}
+      />
     </div>
-  )
+  );
 }

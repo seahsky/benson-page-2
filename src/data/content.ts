@@ -22,6 +22,21 @@ export interface Content {
       secondary: string
     }
   }
+  coreBenefits: {
+    title: string
+    subtitle: string
+    quote: {
+      text: string
+      author: string
+    }
+    benefits: Array<{
+      id: string
+      title: string
+      description: string
+      icon: string
+      keyPoints: string[]
+    }>
+  }
   services: {
     title: string
     subtitle: string
@@ -134,6 +149,64 @@ export const content: Record<Language, Content> = {
         primary: "Book Consultation",
         secondary: "Learn More"
       }
+    },
+    coreBenefits: {
+      title: "What Do Benson's Clients Gain?",
+      subtitle: "Each client's goals, needs, and personal situation are different, so benefits vary accordingly. Beyond finding ideal jobs and careers, here are several core benefits I frequently observe:",
+      quote: {
+        text: "Believe you can do it, and you are already halfway to success.",
+        author: "Roosevelt"
+      },
+      benefits: [
+        {
+          id: "clearer-goals",
+          title: "Clearer Goals and Enhanced Self-Awareness",
+          description: "Many clients re-evaluate or even redefine their goals during the guidance process because they develop a deeper understanding of themselves and begin to know more clearly what they truly want in life and career.",
+          icon: "Target",
+          keyPoints: [
+            "Re-evaluate and redefine personal career objectives",
+            "Develop deeper self-understanding and awareness",
+            "Gain clarity on life and career aspirations",
+            "Align goals with personal values and strengths"
+          ]
+        },
+        {
+          id: "increased-confidence",
+          title: "Increased Confidence",
+          description: "Many clients tell me that through our conversations, they see and can clearly articulate their strengths and abilities for the first time. Some even say that if it weren't for our discussions, they would never have applied for or obtained their dream job.",
+          icon: "TrendingUp",
+          keyPoints: [
+            "Recognize and articulate personal strengths clearly",
+            "Build confidence to pursue dream opportunities",
+            "Overcome self-doubt and limiting beliefs",
+            "Develop lasting confidence for future challenges"
+          ]
+        },
+        {
+          id: "enhanced-motivation",
+          title: "Enhanced Action Motivation",
+          description: "Many clients initially feel their goals are too big and don't know where to start, so they do nothing. I help them clarify the actions they need to take and plan timing and priorities. When goals are broken down into specific actionable steps, things suddenly become feasible, and clients become more motivated to act!",
+          icon: "Zap",
+          keyPoints: [
+            "Break down large goals into actionable steps",
+            "Create clear timing and priority frameworks",
+            "Transform overwhelming objectives into manageable tasks",
+            "Increase motivation through structured planning"
+          ]
+        },
+        {
+          id: "peace-of-mind",
+          title: "Peace of Mind and Sense of Security",
+          description: "Making major life or career decisions is always unsettling, such as whether to quit a job, return to school for further education, or consider immigrating to Australia. By working with me to clarify thoughts and considerations, clients can more confidently confirm they are making the right choice, the most suitable for themselves.",
+          icon: "Heart",
+          keyPoints: [
+            "Gain confidence in major life decisions",
+            "Clarify thoughts and consideration factors",
+            "Reduce anxiety around career transitions",
+            "Feel secure in chosen path and direction"
+          ]
+        }
+      ]
     },
     services: {
       title: "Professional Coaching Services",
@@ -406,6 +479,64 @@ export const content: Record<Language, Content> = {
         primary: "預約諮詢",
         secondary: "了解更多"
       }
+    },
+    coreBenefits: {
+      title: "Benson 的客戶有什麼收穫？",
+      subtitle: "每位客戶的目標、需求與個人情況不同，因此收穫也各不相同。除了找到理想的工作與職涯之外，我經常看到的幾個核心收穫包括：",
+      quote: {
+        text: "相信你能做到，你就已經成功了一半。",
+        author: "羅斯福"
+      },
+      benefits: [
+        {
+          id: "clearer-goals",
+          title: "目標更明確，自我認識提升",
+          description: "很多客戶在引導過程中重新評估甚至重新定義自己的目標，因為他們對自己有了更深的了解，開始更清楚地知道自己在人生與職涯中真正想要的是什麼。",
+          icon: "Target",
+          keyPoints: [
+            "重新評估並重新定義個人職涯目標",
+            "發展更深層的自我理解與認知",
+            "對人生與職涯抱負獲得清晰認識",
+            "將目標與個人價值觀和優勢保持一致"
+          ]
+        },
+        {
+          id: "increased-confidence",
+          title: "自信心提升",
+          description: "許多客戶跟我說，透過我們的對話，他們第一次真正看見並能清楚表達自己的優勢與能力。有些人甚至說，如果不是因為與我談過，他們根本不會去申請、也不會拿到夢寐以求的工作。這份自信非常強大，能幫助他們在未來面對各種職涯與人生挑戰。",
+          icon: "TrendingUp",
+          keyPoints: [
+            "清楚認識並表達個人優勢",
+            "建立追求夢想機會的信心",
+            "克服自我懷疑和限制性信念",
+            "培養面對未來挑戰的持久信心"
+          ]
+        },
+        {
+          id: "enhanced-motivation",
+          title: "行動動力提升",
+          description: "很多客戶一開始覺得自己的目標太大、無從下手，所以什麼都沒做。我會協助他們釐清需要採取的行動，並針對時程與優先順序進行規劃。當目標被拆解成一個個具體可行的小步驟後，事情突然變得可行，客戶也因此更有動力去行動！",
+          icon: "Zap",
+          keyPoints: [
+            "將大目標分解為可行的步驟",
+            "建立清晰的時程和優先級框架",
+            "將壓倒性目標轉化為可管理的任務",
+            "透過結構化規劃提升行動動力"
+          ]
+        },
+        {
+          id: "peace-of-mind",
+          title: "安心與踏實感",
+          description: "要做出人生或職涯的重大決定總是令人不安，例如是否要離職、重返校園進修，或是考慮移民到澳洲等。透過和我一起釐清思緒與考量因素，客戶能更有信心地確認自己做的是對的、最適合自己的選擇。",
+          icon: "Heart",
+          keyPoints: [
+            "在重大人生決定中獲得信心",
+            "釐清思緒和考量因素",
+            "減少職涯轉換的焦慮",
+            "對所選擇的道路感到安全踏實"
+          ]
+        }
+      ]
     },
     services: {
       title: "專業教練服務",

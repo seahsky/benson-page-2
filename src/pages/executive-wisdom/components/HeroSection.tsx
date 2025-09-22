@@ -81,7 +81,7 @@ export default function HeroSection({ content, language }: HeroSectionProps) {
               {content.description}
             </p>
 
-            {/* Key Value Propositions */}
+            {/* Core Benefits Preview */}
             <div className="space-y-4 fade-in-up stagger-3">
               <div className="flex items-start gap-4 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
                 <TrendingUp className="w-6 h-6 text-primary mt-1 flex-shrink-0" />
@@ -89,14 +89,14 @@ export default function HeroSection({ content, language }: HeroSectionProps) {
                   <h3
                     className={`font-semibold text-lg mb-1 text-gray-900 ${language === "zh" ? "font-chinese" : ""}`}
                   >
-                    {language === "zh" ? "職涯提升" : "Career Growth"}
+                    {language === "zh" ? "自信心提升" : "Increased Confidence"}
                   </h3>
                   <p
                     className={`text-sm text-gray-600 ${language === "zh" ? "font-chinese" : ""}`}
                   >
                     {language === "zh"
-                      ? "專業教練助您實現職涯目標"
-                      : "Professional coaching to achieve your career goals"}
+                      ? "第一次真正看見並能清楚表達自己的優勢與能力"
+                      : "See and clearly articulate your strengths and abilities for the first time"}
                   </p>
                 </div>
               </div>
@@ -107,14 +107,14 @@ export default function HeroSection({ content, language }: HeroSectionProps) {
                   <h3
                     className={`font-semibold text-lg mb-1 text-gray-900 ${language === "zh" ? "font-chinese" : ""}`}
                   >
-                    {language === "zh" ? "文化融合" : "Cultural Bridge"}
+                    {language === "zh" ? "目標更明確" : "Clearer Goals"}
                   </h3>
                   <p
                     className={`text-sm text-gray-600 ${language === "zh" ? "font-chinese" : ""}`}
                   >
                     {language === "zh"
-                      ? "了解華人專業人士在澳洲的挑戰"
-                      : "Understanding Chinese professionals' challenges in Australia"}
+                      ? "重新評估並清楚知道自己在職涯中真正想要的"
+                      : "Re-evaluate and clearly understand what you truly want in your career"}
                   </p>
                 </div>
               </div>
@@ -125,14 +125,14 @@ export default function HeroSection({ content, language }: HeroSectionProps) {
                   <h3
                     className={`font-semibold text-lg mb-1 text-gray-900 ${language === "zh" ? "font-chinese" : ""}`}
                   >
-                    {language === "zh" ? "專業認證" : "Certified Excellence"}
+                    {language === "zh" ? "安心與踏實感" : "Peace of Mind"}
                   </h3>
                   <p
                     className={`text-sm text-gray-600 ${language === "zh" ? "font-chinese" : ""}`}
                   >
                     {language === "zh"
-                      ? "ICF ACC 國際認證教練"
-                      : "ICF ACC internationally certified coach"}
+                      ? "在重大決定中獲得信心，確認做的是最適合自己的選擇"
+                      : "Gain confidence in major decisions, ensuring the best choice for yourself"}
                   </p>
                 </div>
               </div>
