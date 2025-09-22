@@ -3,7 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { MessageCircle, Award, TrendingUp, Users } from "lucide-react";
 import { generateWhatsAppLink } from "@/lib/utils";
 import type { Language } from "@/data/content";
-import { MinimalDraggableHeroLogo } from "@/components/MinimalDraggableHeroLogo";
+import AnimatedHeroLogo from "@/components/AnimatedHeroLogo";
 
 interface HeroSectionProps {
   content: {
@@ -175,28 +175,15 @@ export default function HeroSection({ content, language }: HeroSectionProps) {
             </div>
           </div>
 
-          {/* Right Side - Draggable Interactive Logo */}
+          {/* Right Side - Animated Logo with anime.js */}
           <div className="flex justify-center lg:justify-end">
-            <MinimalDraggableHeroLogo
+            <AnimatedHeroLogo
               src="/images/benson-logo.png"
               alt="Benson Wong Career Coaching Logo"
-              language={language}
-              size={{
-                mobile: "w-80 h-80",
-                tablet: "w-96 h-96",
-                desktop: "w-[28rem] h-[28rem]"
-              }}
+              size={448} // lg:w-[28rem] = 448px
               className="drop-shadow-lg"
-              disabled={false}
-              debugMode={true}
-              onDragStart={() => {
-                // Optional: Track drag start analytics
-                console.log('Hero logo drag started');
-              }}
-              onDragEnd={() => {
-                // Optional: Track drag end analytics
-                console.log('Hero logo drag ended');
-              }}
+              enableHoverEffects={true}
+              reduceMotion={false}
             />
           </div>
         </div>

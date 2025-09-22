@@ -1,0 +1,430 @@
+/**
+ * Enhanced Visual Effects CSS
+ * Specialist A - Visual Enhancement Expert
+ * Brand-aligned professional animations with performance optimization
+ */
+
+/* Enhanced Brand Color Variables */
+:root {
+  /* Brand Primary Purple */
+  --brand-primary: hsl(271, 81%, 29%);
+  --brand-primary-light: hsl(271, 81%, 35%);
+  --brand-primary-dark: hsl(271, 81%, 25%);
+  --brand-primary-rgba: rgba(95, 46, 187, 0.8);
+  --brand-primary-rgba-light: rgba(95, 46, 187, 0.4);
+
+  /* Brand Secondary Gold */
+  --brand-secondary: hsl(53, 100%, 65%);
+  --brand-secondary-light: hsl(53, 100%, 70%);
+  --brand-secondary-dark: hsl(53, 100%, 60%);
+  --brand-secondary-rgba: rgba(255, 231, 76, 0.8);
+  --brand-secondary-rgba-light: rgba(255, 231, 76, 0.4);
+
+  /* Brand Accent Blue */
+  --brand-accent: hsl(220, 73%, 61%);
+  --brand-accent-rgba: rgba(74, 144, 226, 0.6);
+
+  /* Enhanced Animation Variables */
+  --shimmer-position: 0%;
+  --energy-intensity: 0;
+  --breathing-scale: 1;
+  --professional-timing: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --micro-timing: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Enhanced Hero Logo Container */
+.enhanced-hero-logo-container {
+  position: relative;
+  overflow: visible;
+  transform-style: preserve-3d;
+  --current-scale: 1;
+  --current-rotation: 0deg;
+  --energy-glow: 0px;
+  --breathing-intensity: 1;
+}
+
+/* Sophisticated Entrance Animation */
+.hero-logo-sophisticated-entrance {
+  opacity: 0;
+  transform: scale(0.85) rotate(-8deg);
+  filter: brightness(0.8) saturate(0.8);
+  animation: sophisticatedEntrance 1.4s var(--professional-timing) forwards;
+  animation-delay: 200ms;
+}
+
+@keyframes sophisticatedEntrance {
+  0% {
+    opacity: 0;
+    transform: scale(0.85) rotate(-8deg);
+    filter: brightness(0.8) saturate(0.8);
+  }
+  40% {
+    opacity: 0.8;
+    transform: scale(1.08) rotate(2deg);
+    filter: brightness(1.1) saturate(1.2);
+  }
+  70% {
+    opacity: 0.95;
+    transform: scale(0.98) rotate(-1deg);
+    filter: brightness(1.05) saturate(1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+    filter: brightness(1) saturate(1);
+  }
+}
+
+/* Professional Breathing Animation for Idle State */
+.hero-logo-breathing {
+  animation: professionalBreathing 3s ease-in-out infinite alternate;
+}
+
+@keyframes professionalBreathing {
+  0% {
+    transform: scale(1);
+    filter: brightness(1) saturate(1);
+  }
+  100% {
+    transform: scale(1.02);
+    filter: brightness(1.02) saturate(1.05);
+  }
+}
+
+/* Enhanced Hover Effects */
+.hero-logo-enhanced-hover {
+  transition: all 450ms var(--professional-timing);
+  transform-origin: center center;
+}
+
+.hero-logo-enhanced-hover:hover {
+  transform: scale(1.12) rotate(3deg);
+  filter: brightness(1.08) saturate(1.15);
+}
+
+/* Multi-layered Glow System */
+.hero-logo-brand-glow {
+  position: relative;
+  transition: all 600ms ease-in-out;
+}
+
+.hero-logo-brand-glow::before {
+  content: '';
+  position: absolute;
+  inset: -10px;
+  border-radius: inherit;
+  background: radial-gradient(
+    circle at center,
+    var(--brand-primary-rgba-light) 0%,
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 600ms ease-in-out;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.hero-logo-brand-glow::after {
+  content: '';
+  position: absolute;
+  inset: -5px;
+  border-radius: inherit;
+  background: radial-gradient(
+    circle at center,
+    var(--brand-secondary-rgba-light) 0%,
+    transparent 50%
+  );
+  opacity: 0;
+  transition: opacity 600ms ease-in-out;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.hero-logo-brand-glow:hover::before {
+  opacity: 0.6;
+}
+
+.hero-logo-brand-glow:hover::after {
+  opacity: 0.3;
+}
+
+/* Enhanced Shimmer Effect */
+.hero-logo-professional-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-logo-professional-shimmer::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    var(--brand-primary-rgba-light) 45deg,
+    var(--brand-secondary-rgba-light) 90deg,
+    transparent 135deg,
+    transparent 360deg
+  );
+  opacity: 0;
+  transform: rotate(0deg);
+  transition: all 600ms ease-in-out;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+
+.hero-logo-professional-shimmer:hover::after {
+  opacity: 0.4;
+  transform: rotate(360deg);
+  animation: professionalShimmer 2s linear infinite;
+}
+
+@keyframes professionalShimmer {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Energy Visualization System */
+.hero-logo-energy-indicator {
+  position: relative;
+  --energy-level: 0;
+}
+
+.hero-logo-energy-indicator::before {
+  content: '';
+  position: absolute;
+  inset: calc(-5px - var(--energy-level) * 15px);
+  border-radius: inherit;
+  background: radial-gradient(
+    circle at center,
+    var(--brand-primary-rgba) 0%,
+    var(--brand-accent-rgba) 70%,
+    transparent 100%
+  );
+  opacity: var(--energy-level);
+  filter: blur(calc(var(--energy-level) * 3px));
+  animation: energyPulse calc(1.5s - var(--energy-level) * 0.5s) ease-in-out infinite alternate;
+  pointer-events: none;
+  z-index: -1;
+}
+
+@keyframes energyPulse {
+  0% { transform: scale(0.9); opacity: calc(var(--energy-level) * 0.5); }
+  100% { transform: scale(1.1); opacity: var(--energy-level); }
+}
+
+/* Celebration Animation Effects */
+.hero-logo-celebration-burst {
+  animation: celebrationBurst 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  transform-origin: center center;
+}
+
+@keyframes celebrationBurst {
+  0% {
+    transform: scale(1) rotate(0deg);
+    filter: brightness(1) saturate(1);
+  }
+  25% {
+    transform: scale(1.25) rotate(-6deg);
+    filter: brightness(1.2) saturate(1.4) drop-shadow(0 0 20px var(--brand-primary-rgba));
+  }
+  50% {
+    transform: scale(1.15) rotate(6deg);
+    filter: brightness(1.15) saturate(1.3) drop-shadow(0 0 25px var(--brand-secondary-rgba));
+  }
+  75% {
+    transform: scale(1.08) rotate(-3deg);
+    filter: brightness(1.1) saturate(1.2) drop-shadow(0 0 15px var(--brand-primary-rgba));
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    filter: brightness(1) saturate(1);
+  }
+}
+
+/* Achievement Celebration */
+.hero-logo-achievement {
+  animation: achievementCelebration 2s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+
+@keyframes achievementCelebration {
+  0% { transform: scale(1); }
+  15% { transform: scale(1.35) rotate(-8deg); }
+  30% { transform: scale(0.95) rotate(8deg); }
+  45% { transform: scale(1.15) rotate(-4deg); }
+  60% { transform: scale(1.05) rotate(2deg); }
+  75% { transform: scale(1.08) rotate(-1deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+/* Professional Focus States */
+.hero-logo-professional-focus {
+  outline: none;
+  position: relative;
+}
+
+.hero-logo-professional-focus::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border: 2px solid var(--brand-primary);
+  border-radius: inherit;
+  opacity: 0;
+  transform: scale(0.95);
+  transition: all 250ms var(--micro-timing);
+  pointer-events: none;
+}
+
+.hero-logo-professional-focus:focus-visible::after {
+  opacity: 1;
+  transform: scale(1);
+  box-shadow: 0 0 0 3px var(--brand-primary-rgba-light);
+}
+
+/* Context-Aware Adaptive Themes */
+.hero-logo-time-morning {
+  filter: sepia(0.1) brightness(1.05) saturate(1.1);
+}
+
+.hero-logo-time-afternoon {
+  filter: contrast(1.02) brightness(1.02);
+}
+
+.hero-logo-time-evening {
+  filter: hue-rotate(10deg) brightness(0.98) saturate(1.05);
+}
+
+.hero-logo-time-night {
+  filter: brightness(0.95) saturate(0.95) contrast(1.05);
+}
+
+/* Scroll-Based Progressive Enhancement */
+.hero-logo-scroll-enhanced {
+  --scroll-progress: 0;
+  filter: drop-shadow(0 0 calc(var(--scroll-progress) * 20px) var(--brand-primary-rgba))
+         brightness(calc(1 + var(--scroll-progress) * 0.1));
+}
+
+/* Performance-Optimized Particle Container */
+.hero-logo-particle-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  mix-blend-mode: screen;
+  opacity: 0.8;
+}
+
+/* Micro-Interaction Feedback */
+.hero-logo-micro-feedback {
+  transition: transform 150ms var(--micro-timing);
+}
+
+.hero-logo-micro-feedback:active {
+  transform: scale(0.98);
+}
+
+/* Enhanced GPU Acceleration */
+.hero-logo-gpu-optimized {
+  will-change: transform, opacity, filter;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Professional Loading States */
+.hero-logo-loading {
+  opacity: 0.7;
+  filter: blur(1px);
+  animation: professionalLoading 1.5s ease-in-out infinite;
+}
+
+@keyframes professionalLoading {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 0.9; }
+}
+
+/* Accessibility Enhancements */
+.hero-logo-accessible-indicator {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  width: 12px;
+  height: 12px;
+  background: var(--brand-secondary);
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(0);
+  transition: all 200ms ease-out;
+}
+
+.hero-logo-accessible-indicator.active {
+  opacity: 1;
+  transform: scale(1);
+  animation: accessibilityPulse 2s ease-in-out infinite;
+}
+
+@keyframes accessibilityPulse {
+  0%, 100% { background: var(--brand-secondary); }
+  50% { background: var(--brand-primary); }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .hero-logo-sophisticated-entrance,
+  .hero-logo-breathing,
+  .hero-logo-professional-shimmer::after,
+  .hero-logo-energy-indicator::before,
+  .hero-logo-celebration-burst,
+  .hero-logo-achievement {
+    animation: none !important;
+  }
+
+  .hero-logo-enhanced-hover {
+    transition: transform 200ms ease-out, filter 200ms ease-out;
+  }
+
+  .hero-logo-enhanced-hover:hover {
+    transform: scale(1.05);
+    filter: brightness(1.05) saturate(1.05);
+  }
+
+  .hero-logo-gpu-optimized {
+    will-change: auto;
+    transform: none;
+  }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  .hero-logo-brand-glow::before,
+  .hero-logo-brand-glow::after,
+  .hero-logo-professional-shimmer::after {
+    display: none;
+  }
+
+  .hero-logo-professional-focus::after {
+    border-width: 3px;
+    border-color: currentColor;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .hero-logo-sophisticated-entrance,
+  .hero-logo-breathing,
+  .hero-logo-enhanced-hover,
+  .hero-logo-brand-glow,
+  .hero-logo-professional-shimmer,
+  .hero-logo-energy-indicator,
+  .hero-logo-particle-layer {
+    animation: none !important;
+    filter: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}
