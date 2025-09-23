@@ -1,5 +1,4 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
   Target,
@@ -7,7 +6,6 @@ import {
   Zap,
   Heart,
   MessageCircle,
-  Quote,
 } from "lucide-react";
 import { generateWhatsAppLink } from "@/lib/utils";
 import type { Language } from "@/data/content";
