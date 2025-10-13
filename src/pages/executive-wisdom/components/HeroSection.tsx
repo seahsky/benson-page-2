@@ -1,9 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { MessageCircle, Award, TrendingUp, Users } from "lucide-react";
-import { generateWhatsAppLink } from "@/lib/utils";
+import { Award, TrendingUp, Users } from "lucide-react";
 import type { Language } from "@/data/content";
 import { MinimalDraggableHeroLogo } from "@/components/MinimalDraggableHeroLogo";
+import ContactButtonMenu from "@/components/ContactButtonMenu";
 
 interface HeroSectionProps {
   content: {
@@ -24,8 +24,6 @@ export default function HeroSection({ content, language }: HeroSectionProps) {
     language === "zh"
       ? "您好！我對職涯教練服務很感興趣，希望能了解更多詳情。"
       : "Hello! I'm interested in your career coaching services and would like to learn more.";
-
-  const whatsappLink = generateWhatsAppLink("85297020812", whatsappMessage);
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white">
@@ -140,23 +138,15 @@ export default function HeroSection({ content, language }: HeroSectionProps) {
 
             {/* Call-to-Action Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 fade-in-up stagger-4">
-              <Button
-                size="xl"
+              <ContactButtonMenu
+                label={content.cta.primary}
+                language={language}
+                whatsappMessage={whatsappMessage}
+                context="hero"
                 variant="consultation"
-                asChild
-                className={`bg-primary text-white hover:bg-primary/90 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 ${
-                  language === "zh" ? "font-chinese" : ""
-                }`}
-              >
-                <a
-                  href={whatsappLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <MessageCircle className="w-5 h-5 mr-2" />
-                  {content.cta.primary}
-                </a>
-              </Button>
+                size="xl"
+                className="bg-primary text-white hover:bg-primary/90 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+              />
 
               <Button
                 size="xl"

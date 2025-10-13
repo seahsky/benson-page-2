@@ -3,6 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge'
 import { MessageCircle, MessageSquare, Facebook, AtSign, Phone, Mail, MapPin } from 'lucide-react'
 import type { Language } from '@/data/content'
+import ContactButtonMenu from '@/components/ContactButtonMenu'
 
 interface CommunityConnectionProps {
   content: {
@@ -198,19 +199,18 @@ export default function CommunityConnection({ content, language }: CommunityConn
                     : 'Contact me to learn about professional coaching services and explore how I can help you achieve your career goals.'
                   }
                 </p>
-                <Button
-                  size="xl"
+                <ContactButtonMenu
+                  label={language === 'zh' ? '立即聯繫' : 'Contact Now'}
+                  language={language}
+                  whatsappMessage={language === 'zh'
+                    ? '您好！我想了解專業教練服務詳情，希望能預約諮詢時間。'
+                    : 'Hello! I would like to learn about professional coaching services and schedule a consultation.'
+                  }
+                  context="community-featured"
                   variant="secondary"
-                  asChild
-                  className={`shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 ${
-                    language === 'zh' ? 'font-chinese' : ''
-                  }`}
-                >
-                  <a href={content.channels[0].link} target="_blank" rel="noopener noreferrer">
-                    <MessageCircle className="w-5 h-5 mr-2" />
-                    {language === 'zh' ? '立即聯繫' : 'Contact Now'}
-                  </a>
-                </Button>
+                  size="xl"
+                  className="shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300"
+                />
               </div>
             </div>
           </div>

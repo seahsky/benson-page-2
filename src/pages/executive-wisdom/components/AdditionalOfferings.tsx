@@ -1,9 +1,9 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import { CheckCircle, BookOpen, Users, Clock, MessageCircle } from 'lucide-react'
-import { formatPrice, generateWhatsAppLink } from '@/lib/utils'
+import { CheckCircle, BookOpen, Users, Clock } from 'lucide-react'
+import { formatPrice } from '@/lib/utils'
 import type { Language } from '@/data/content'
+import ContactButtonMenu from '@/components/ContactButtonMenu'
 
 interface AdditionalOfferingsProps {
   content: {
@@ -55,7 +55,6 @@ export default function AdditionalOfferings({ content, language }: AdditionalOff
           {content.courses.map((course, index) => {
             const IconComponent = getCourseIcon(course.name)
             const whatsappMessage = generateCourseWhatsAppMessage(course.name, course.price)
-            const whatsappLink = generateWhatsAppLink("85297020812", whatsappMessage)
 
             return (
               <Card
@@ -150,19 +149,15 @@ export default function AdditionalOfferings({ content, language }: AdditionalOff
                   </div>
 
                   {/* Enrollment Button */}
-                  <Button
+                  <ContactButtonMenu
+                    label={language === 'zh' ? '報名課程' : 'Enroll Now'}
+                    language={language}
+                    whatsappMessage={whatsappMessage}
+                    context={`course-${course.name.toLowerCase().replace(/\s+/g, '-')}`}
                     variant="consultation"
                     size="lg"
-                    asChild
-                    className={`w-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 ${
-                      language === 'zh' ? 'font-chinese' : ''
-                    }`}
-                  >
-                    <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
-                      <MessageCircle className="w-4 h-4 mr-2" />
-                      {language === 'zh' ? '報名課程' : 'Enroll Now'}
-                    </a>
-                  </Button>
+                    className="w-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+                  />
                 </CardContent>
               </Card>
             )
@@ -206,22 +201,18 @@ export default function AdditionalOfferings({ content, language }: AdditionalOff
             </div>
 
             <div className="text-center">
-              <Button
-                variant="package-select"
-                size="lg"
-                asChild
-                className={`shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 ${
-                  language === 'zh' ? 'font-chinese' : ''
-                }`}
-              >
-                <a href={generateWhatsAppLink("85297020812", language === 'zh'
+              <ContactButtonMenu
+                label={language === 'zh' ? '選擇組合優惠' : 'Choose Bundle Offer'}
+                language={language}
+                whatsappMessage={language === 'zh'
                   ? "您好！我對課程組合優惠很感興趣，希望能了解更多詳情。"
                   : "Hello! I'm interested in the course bundle offer and would like to learn more details."
-                )} target="_blank" rel="noopener noreferrer">
-                  <MessageCircle className="w-4 h-4 mr-2" />
-                  {language === 'zh' ? '選擇組合優惠' : 'Choose Bundle Offer'}
-                </a>
-              </Button>
+                }
+                context="course-bundle"
+                variant="package-select"
+                size="lg"
+                className="shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300"
+              />
             </div>
           </div>
         </div>

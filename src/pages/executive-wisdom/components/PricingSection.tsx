@@ -1,9 +1,9 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import { CheckCircle, Crown, MessageCircle, Clock, Users } from 'lucide-react'
-import { formatPrice, generateWhatsAppLink } from '@/lib/utils'
+import { CheckCircle, Crown, Clock, Users } from 'lucide-react'
+import { formatPrice } from '@/lib/utils'
 import type { Language } from '@/data/content'
+import ContactButtonMenu from '@/components/ContactButtonMenu'
 
 interface PricingSectionProps {
   content: {
@@ -53,7 +53,6 @@ export default function PricingSection({ content, language }: PricingSectionProp
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
           {content.packages.map((pkg, index) => {
             const whatsappMessage = generatePricingWhatsAppMessage(pkg.name, pkg.price)
-            const whatsappLink = generateWhatsAppLink("85297020812", whatsappMessage)
 
             return (
               <Card
@@ -153,19 +152,15 @@ export default function PricingSection({ content, language }: PricingSectionProp
                   </div>
 
                   {/* CTA Button */}
-                  <Button
+                  <ContactButtonMenu
+                    label={language === 'zh' ? '選擇此方案' : 'Select Package'}
+                    language={language}
+                    whatsappMessage={whatsappMessage}
+                    context={`pricing-${pkg.name.toLowerCase().replace(/\s+/g, '-')}`}
                     variant={pkg.popular ? "consultation" : "package-select"}
                     size="lg"
-                    asChild
-                    className={`w-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 ${
-                      language === 'zh' ? 'font-chinese' : ''
-                    }`}
-                  >
-                    <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
-                      <MessageCircle className="w-4 h-4 mr-2" />
-                      {language === 'zh' ? '選擇此方案' : 'Select Package'}
-                    </a>
-                  </Button>
+                    className="w-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+                  />
                 </CardContent>
               </Card>
             )
@@ -199,22 +194,18 @@ export default function PricingSection({ content, language }: PricingSectionProp
               : 'Not sure which package is right for you? Contact me to learn more about services and pricing.'
             }
           </p>
-          <Button
-            variant="outline"
-            size="lg"
-            asChild
-            className={`border-primary text-primary hover:bg-primary hover:text-primary-foreground ${
-              language === 'zh' ? 'font-chinese' : ''
-            }`}
-          >
-            <a href={generateWhatsAppLink("85297020812", language === 'zh'
+          <ContactButtonMenu
+            label={language === 'zh' ? '聯繫諮詢' : 'Contact for Inquiry'}
+            language={language}
+            whatsappMessage={language === 'zh'
               ? "您好！我想了解更多關於職涯教練服務的詳情和收費。"
               : "Hello! I'd like to learn more about your career coaching services and pricing."
-            )} target="_blank" rel="noopener noreferrer">
-              <MessageCircle className="w-4 h-4 mr-2" />
-              {language === 'zh' ? '聯繫諮詢' : 'Contact for Inquiry'}
-            </a>
-          </Button>
+            }
+            context="pricing-inquiry"
+            variant="outline"
+            size="lg"
+            className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+          />
         </div>
       </div>
     </section>
