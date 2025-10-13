@@ -195,8 +195,8 @@ export default function PricingSection({ content, language }: PricingSectionProp
         <div className="text-center mt-12 fade-in-up stagger-5">
           <p className={`text-neutral-600 mb-6 ${language === 'zh' ? 'font-chinese' : ''}`}>
             {language === 'zh'
-              ? '不確定哪個方案最適合您？讓我們先聊聊您的具體需求。'
-              : 'Not sure which package is right for you? Let\'s discuss your specific needs first.'
+              ? '不確定哪個方案最適合您？聯繫我了解更多服務詳情和收費。'
+              : 'Not sure which package is right for you? Contact me to learn more about services and pricing.'
             }
           </p>
           <Button
@@ -208,11 +208,11 @@ export default function PricingSection({ content, language }: PricingSectionProp
             }`}
           >
             <a href={generateWhatsAppLink("85297020812", language === 'zh'
-              ? "您好！我想了解更多關於職涯教練服務的信息，希望能先進行免費諮詢。"
-              : "Hello! I'd like to learn more about career coaching services and would appreciate a free consultation."
+              ? "您好！我想了解更多關於職涯教練服務的詳情和收費。"
+              : "Hello! I'd like to learn more about your career coaching services and pricing."
             )} target="_blank" rel="noopener noreferrer">
               <MessageCircle className="w-4 h-4 mr-2" />
-              {language === 'zh' ? '免費諮詢' : 'Free Consultation'}
+              {language === 'zh' ? '聯繫諮詢' : 'Contact for Inquiry'}
             </a>
           </Button>
         </div>

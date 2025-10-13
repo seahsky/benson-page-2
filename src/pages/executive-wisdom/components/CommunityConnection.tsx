@@ -190,12 +190,12 @@ export default function CommunityConnection({ content, language }: CommunityConn
                 <h4 className={`text-2xl font-bold mb-4 text-secondary ${
                   language === 'zh' ? 'font-chinese' : ''
                 }`}>
-                  {language === 'zh' ? '免費初次諮詢' : 'Free Initial Consultation'}
+                  {language === 'zh' ? '開始您的職涯轉變' : 'Start Your Career Transformation'}
                 </h4>
                 <p className={`text-white/90 mb-6 ${language === 'zh' ? 'font-chinese' : ''}`}>
                   {language === 'zh'
-                    ? '15分鐘免費諮詢，了解您的需求並為您推薦最適合的服務方案。'
-                    : '15-minute free consultation to understand your needs and recommend the most suitable service plan.'
+                    ? '聯繫我了解專業教練服務詳情，讓我們一起探討如何幫助您實現職涯目標。'
+                    : 'Contact me to learn about professional coaching services and explore how I can help you achieve your career goals.'
                   }
                 </p>
                 <Button
@@ -208,7 +208,7 @@ export default function CommunityConnection({ content, language }: CommunityConn
                 >
                   <a href={content.channels[0].link} target="_blank" rel="noopener noreferrer">
                     <MessageCircle className="w-5 h-5 mr-2" />
-                    {language === 'zh' ? '預約免費諮詢' : 'Book Free Consultation'}
+                    {language === 'zh' ? '立即聯繫' : 'Contact Now'}
                   </a>
                 </Button>
               </div>
