@@ -5,17 +5,15 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import {
   Award,
   GraduationCap,
   Building,
   Users,
   Calendar,
-  MessageCircle,
 } from "lucide-react";
-import { generateWhatsAppLink } from "@/lib/utils";
 import type { Language } from "@/data/content";
+import ContactButtonMenu from "@/components/ContactButtonMenu";
 
 interface ProfessionalAuthorityProps {
   content: {
@@ -47,8 +45,6 @@ export default function ProfessionalAuthority({
     language === "zh"
       ? "您好！我對您的專業背景很有信心，希望能進一步了解如何開始職涯教練服務。"
       : "Hello! I'm impressed by your professional background and would like to learn more about starting career coaching services.";
-
-  const whatsappLink = generateWhatsAppLink("85297020812", whatsappMessage);
 
   return (
     <section className="section-padding bg-white">
@@ -203,23 +199,17 @@ export default function ProfessionalAuthority({
                   {content.experience.background}
                 </p>
 
-                <Button
+                <ContactButtonMenu
+                  label={language === "zh"
+                    ? "體驗專業指導"
+                    : "Experience Professional Guidance"}
+                  language={language}
+                  whatsappMessage={whatsappMessage}
+                  context="professional-authority-cta"
                   variant="consultation"
                   size="lg"
-                  asChild
-                  className={`shadow-lg hover:shadow-xl ${language === "zh" ? "font-chinese" : ""}`}
-                >
-                  <a
-                    href={whatsappLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <MessageCircle className="w-4 h-4 mr-2" />
-                    {language === "zh"
-                      ? "體驗專業指導"
-                      : "Experience Professional Guidance"}
-                  </a>
-                </Button>
+                  className="shadow-lg hover:shadow-xl"
+                />
               </div>
 
               {/* Specialties */}

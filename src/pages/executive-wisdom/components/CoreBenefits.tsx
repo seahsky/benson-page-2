@@ -1,14 +1,12 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import {
   Target,
   TrendingUp,
   Zap,
   Heart,
-  MessageCircle,
 } from "lucide-react";
-import { generateWhatsAppLink } from "@/lib/utils";
 import type { Language } from "@/data/content";
+import ContactButtonMenu from "@/components/ContactButtonMenu";
 
 interface CoreBenefitsProps {
   content: {
@@ -34,8 +32,6 @@ export default function CoreBenefits({ content, language }: CoreBenefitsProps) {
     language === "zh"
       ? "您好！我看到了核心收穫介紹，希望能了解如何開始獲得這些職涯提升效果。"
       : "Hello! I've seen the core benefits and would like to learn how to start gaining these career enhancement effects.";
-
-  const whatsappLink = generateWhatsAppLink("85297020812", whatsappMessage);
 
   // Get benefit icon component
   const getBenefitIcon = (iconName: string) => {
@@ -251,21 +247,17 @@ export default function CoreBenefits({ content, language }: CoreBenefitsProps) {
               ? "讓我們透過專業引導，助您實現職涯目標並獲得這些寶貴的收穫。"
               : "Let us help you achieve your career goals and gain these valuable benefits through professional guidance."}
           </p>
-          <Button
-            size="xl"
+          <ContactButtonMenu
+            label={language === "zh"
+              ? "開始獲得這些收穫"
+              : "Start Gaining These Benefits"}
+            language={language}
+            whatsappMessage={whatsappMessage}
+            context="core-benefits-cta"
             variant="consultation"
-            asChild
-            className={`shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 ${
-              language === "zh" ? "font-chinese" : ""
-            }`}
-          >
-            <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
-              <MessageCircle className="w-5 h-5 mr-2" />
-              {language === "zh"
-                ? "開始獲得這些收穫"
-                : "Start Gaining These Benefits"}
-            </a>
-          </Button>
+            size="xl"
+            className="shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300"
+          />
         </div>
       </div>
     </section>

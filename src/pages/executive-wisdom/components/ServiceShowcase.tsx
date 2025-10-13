@@ -1,9 +1,9 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import { CheckCircle, Briefcase, FileText, MessageCircle } from 'lucide-react'
-import { generateWhatsAppLink } from '@/lib/utils'
+import { CheckCircle, Briefcase, FileText } from 'lucide-react'
 import type { Language } from '@/data/content'
+import ContactButtonMenu from '@/components/ContactButtonMenu'
 
 interface ServiceShowcaseProps {
   content: {
@@ -29,8 +29,6 @@ export default function ServiceShowcase({ content, language }: ServiceShowcasePr
   const whatsappMessage = language === 'zh'
     ? "您好！我對職涯教練服務很感興趣，希望能了解詳細的服務內容和費用。"
     : "Hello! I'm interested in your coaching services and would like to learn about the details and pricing."
-
-  const whatsappLink = generateWhatsAppLink("85297020812", whatsappMessage)
 
   return (
     <section id="services" className="section-padding bg-neutral-50">
@@ -86,19 +84,15 @@ export default function ServiceShowcase({ content, language }: ServiceShowcasePr
                 ))}
               </div>
 
-              <Button
+              <ContactButtonMenu
+                label={language === 'zh' ? '諮詢職涯教練' : 'Consult Career Coaching'}
+                language={language}
+                whatsappMessage={whatsappMessage}
+                context="service-career-coaching"
                 variant="consultation"
                 size="lg"
-                asChild
-                className={`w-full group-hover:shadow-xl transition-all duration-300 ${
-                  language === 'zh' ? 'font-chinese' : ''
-                }`}
-              >
-                <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
-                  <MessageCircle className="w-4 h-4 mr-2" />
-                  {language === 'zh' ? '諮詢職涯教練' : 'Consult Career Coaching'}
-                </a>
-              </Button>
+                className="w-full group-hover:shadow-xl transition-all duration-300"
+              />
             </CardContent>
           </Card>
 
@@ -137,19 +131,15 @@ export default function ServiceShowcase({ content, language }: ServiceShowcasePr
                 ))}
               </div>
 
-              <Button
+              <ContactButtonMenu
+                label={language === 'zh' ? '諮詢申請教練' : 'Consult Application Coaching'}
+                language={language}
+                whatsappMessage={whatsappMessage}
+                context="service-application-coaching"
                 variant="package-select"
                 size="lg"
-                asChild
-                className={`w-full group-hover:shadow-xl transition-all duration-300 ${
-                  language === 'zh' ? 'font-chinese' : ''
-                }`}
-              >
-                <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
-                  <MessageCircle className="w-4 h-4 mr-2" />
-                  {language === 'zh' ? '諮詢申請教練' : 'Consult Application Coaching'}
-                </a>
-              </Button>
+                className="w-full group-hover:shadow-xl transition-all duration-300"
+              />
             </CardContent>
           </Card>
         </div>
