@@ -22,6 +22,19 @@ export interface Content {
       secondary: string
     }
   }
+  stats: {
+    clients: string
+    coachingHours: string
+    interviews: string
+    efficiencyRate: string
+    efficiencyDescription: string
+    maxSessions: string
+    maxSessionsDescription: string
+    satisfaction: string
+    satisfactionDescription: string
+    sectionTitle: string
+    sectionSubtitle: string
+  }
   coreBenefits: {
     title: string
     subtitle: string
@@ -149,6 +162,19 @@ export const content: Record<Language, Content> = {
         primary: "Book Consultation",
         secondary: "Learn More"
       }
+    },
+    stats: {
+      clients: "300+",
+      coachingHours: "500+",
+      interviews: "200+",
+      efficiencyRate: "83.1%",
+      efficiencyDescription: "of clients achieve their goals in 5 sessions or fewer",
+      maxSessions: "100%",
+      maxSessionsDescription: "of clients complete their goals within 10 sessions",
+      satisfaction: "93.3%",
+      satisfactionDescription: "client satisfaction rate",
+      sectionTitle: "Proven Results & Client Success",
+      sectionSubtitle: "Real outcomes from coaching that delivers measurable impact"
     },
     coreBenefits: {
       title: "What Do Benson's Clients Gain?",
@@ -378,10 +404,13 @@ export const content: Record<Language, Content> = {
       ],
       experience: {
         years: "15+ Years",
-        background: "Extensive Australian government sector experience providing deep insights into the Australian workplace culture, expectations, and career progression pathways.",
+        background: "Extensive Australian government sector experience providing deep insights into the Australian workplace culture, expectations, and career progression pathways. Proudly serving Chinese-speaking professionals across Australia, Taiwan, and Hong Kong.",
         specialties: [
+          "Career Anchoring & Goal Setting",
+          "Public & Private Sector Job Applications",
+          "Strategic Career Planning",
+          "Workplace Leadership Development",
           "Australian Public Service",
-          "Corporate Coaching",
           "Graduate Program Coaching",
           "Cross-cultural Workplace Integration",
           "Bilingual Professional Development"
@@ -479,6 +508,19 @@ export const content: Record<Language, Content> = {
         primary: "預約諮詢",
         secondary: "了解更多"
       }
+    },
+    stats: {
+      clients: "300+",
+      coachingHours: "500+",
+      interviews: "200+",
+      efficiencyRate: "83.1%",
+      efficiencyDescription: "的客人僅需五次或更少的晤談就可完成引導目標",
+      maxSessions: "100%",
+      maxSessionsDescription: "的客人在十次晤談內完成所有目標",
+      satisfaction: "93.3%",
+      satisfactionDescription: "顧客滿意率",
+      sectionTitle: "實證成果與客戶成功",
+      sectionSubtitle: "提供可衡量影響力的引導服務帶來的真實成果"
     },
     coreBenefits: {
       title: "Benson 的客戶有什麼收穫？",
@@ -708,10 +750,13 @@ export const content: Record<Language, Content> = {
       ],
       experience: {
         years: "15+ 年",
-        background: "豐富的澳洲政府部門經驗，深入了解澳洲職場文化、期望和職涯發展路徑。",
+        background: "豐富的澳洲政府部門經驗，深入了解澳洲職場文化、期望和職涯發展路徑。專業服務澳洲、台灣及香港的華語專業人士。",
         specialties: [
+          "職涯定錨與目標設定",
+          "公私單位工作申請",
+          "策略性職涯規劃",
+          "職場領導力發展",
           "澳洲公務部門",
-          "企業教練",
           "畢業生計劃教練",
           "跨文化職場融合",
           "雙語專業發展"

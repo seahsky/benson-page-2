@@ -6,6 +6,7 @@ import CoreBenefits from "./components/CoreBenefits";
 import ServiceShowcase from "./components/ServiceShowcase";
 import PricingSection from "./components/PricingSection";
 import SuccessStories from "./components/SuccessStories";
+import SuccessMetrics from "./components/SuccessMetrics";
 import ProfessionalAuthority from "./components/ProfessionalAuthority";
 import AdditionalOfferings from "./components/AdditionalOfferings";
 import CommunityConnection from "./components/CommunityConnection";
@@ -58,6 +59,11 @@ export default function ExecutiveWisdom() {
           content={currentContent.successStories}
           language={language}
         />
+      </section>
+
+      {/* Success Metrics */}
+      <section id="success-metrics">
+        <SuccessMetrics content={currentContent.stats} language={language} />
       </section>
 
       {/* Pricing Section - Fees */}

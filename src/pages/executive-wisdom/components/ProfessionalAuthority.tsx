@@ -260,13 +260,13 @@ export default function ProfessionalAuthority({
               icon: Calendar,
             },
             {
-              number: "100+",
-              label: language === "zh" ? "成功案例" : "Success Cases",
+              number: "300+",
+              label: language === "zh" ? "客戶" : "Clients Coached",
               icon: Users,
             },
             {
-              number: "5",
-              label: language === "zh" ? "學術資格" : "Qualifications",
+              number: "500+",
+              label: language === "zh" ? "引導時數" : "Coaching Hours",
               icon: GraduationCap,
             },
           ].map((stat, index) => (
