@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Award, TrendingUp, Users } from "lucide-react";
 import type { Language } from "@/data/content";
-import { MinimalDraggableHeroLogo } from "@/components/MinimalDraggableHeroLogo";
+import { InteractiveLightBulb } from "@/components/InteractiveLightBulb";
 import ContactButtonMenu from "@/components/ContactButtonMenu";
 
 interface HeroSectionProps {
@@ -165,27 +165,25 @@ export default function HeroSection({ content, language }: HeroSectionProps) {
             </div>
           </div>
 
-          {/* Right Side - Draggable Interactive Logo */}
+          {/* Right Side - Premium Interactive Light Bulb */}
           <div className="flex justify-center lg:justify-end">
-            <MinimalDraggableHeroLogo
+            <InteractiveLightBulb
               src="/images/benson-logo.png"
-              alt="Benson Wong Career Coaching Logo"
+              alt="Benson Wong Career Coaching - Interactive Light Bulb Logo"
               language={language}
               size={{
                 mobile: "w-80 h-80",
                 tablet: "w-96 h-96",
                 desktop: "w-[28rem] h-[28rem]"
               }}
-              className="drop-shadow-lg"
               disabled={false}
-              debugMode={true}
               onDragStart={() => {
                 // Optional: Track drag start analytics
-                console.log('Hero logo drag started');
+                console.log('Premium light bulb interaction started');
               }}
               onDragEnd={() => {
                 // Optional: Track drag end analytics
-                console.log('Hero logo drag ended');
+                console.log('Premium light bulb interaction ended');
               }}
             />
           </div>

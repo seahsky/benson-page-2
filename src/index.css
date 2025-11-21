@@ -273,10 +273,42 @@
   }
 }
 
+/* Premium Illumination Animations */
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Utility animation classes */
+.animate-pulse-slow {
+  animation: pulse-slow 3s ease-in-out infinite;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.3s ease-out forwards;
+}
+
 /* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
   .hero-logo-container::before,
-  .hero-logo-shimmer::after {
+  .hero-logo-shimmer::after,
+  .animate-pulse-slow,
+  .animate-fade-in {
     animation: none;
   }
 

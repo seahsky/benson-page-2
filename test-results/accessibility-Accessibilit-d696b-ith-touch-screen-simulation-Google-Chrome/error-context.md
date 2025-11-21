@@ -1,0 +1,93 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - banner [ref=e3]:
+    - generic [ref=e4]:
+      - heading "Anime.js Showcase" [level=1] [ref=e5]
+      - paragraph [ref=e6]: Scroll-driven animation demonstrations
+  - main [ref=e7]:
+    - generic [ref=e9]:
+      - generic [ref=e10]:
+        - heading "Rotating Square" [level=2] [ref=e11]
+        - paragraph [ref=e12]: A simple rotation and scaling animation demonstrating basic Anime.js transforms. The square continuously rotates 360° while pulsing between different scales.
+        - list [ref=e13]:
+          - listitem [ref=e14]: → Continuous rotation
+          - listitem [ref=e15]: → Scale animation
+          - listitem [ref=e16]: → Loop animation
+      - generic [ref=e17]:
+        - heading "Code" [level=3] [ref=e18]
+        - code [ref=e20]: "anime({ targets: '.square', rotate: 360, scale: [1, 1.2, 1], duration: 2000, easing: 'easeInOutQuad', loop: true });"
+    - generic [ref=e22]:
+      - generic [ref=e23]:
+        - heading "Random Transforms" [level=2] [ref=e24]
+        - paragraph [ref=e25]: Multiple shapes with randomized transformations. Each shape receives random position, rotation, and scale values with staggered delays.
+        - list [ref=e26]:
+          - listitem [ref=e27]: → Function-based values
+          - listitem [ref=e28]: → Stagger delays
+          - listitem [ref=e29]: → Blend composition
+      - generic [ref=e30]:
+        - heading "Code" [level=3] [ref=e31]
+        - code [ref=e33]: "anime({ targets: '.shape', translateX: () => anime.random(-100, 100), translateY: () => anime.random(-100, 100), rotate: () => anime.random(-180, 180), scale: () => anime.random(0.5, 1.5), delay: anime.stagger(100) });"
+    - generic [ref=e35]:
+      - generic [ref=e36]:
+        - heading "SVG Path Drawing" [level=2] [ref=e37]
+        - paragraph [ref=e38]: Sequential path animation using strokeDashoffset. Watch as the paths draw themselves in sequence with smooth easing.
+        - list [ref=e39]:
+          - listitem [ref=e40]: → Stroke animation
+          - listitem [ref=e41]: → Sequential drawing
+          - listitem [ref=e42]: → Smooth easing
+      - generic [ref=e43]:
+        - heading "Code" [level=3] [ref=e44]
+        - code [ref=e46]: "anime({ targets: '.svg-path', strokeDashoffset: [anime.setDashoffset, 0], duration: 2000, delay: anime.stagger(200), easing: 'easeInOutQuad', loop: true });"
+    - generic [ref=e48]:
+      - generic [ref=e49]:
+        - heading "Staggered Grid" [level=2] [ref=e50]
+        - paragraph [ref=e51]: A 13x13 grid of elements with wave propagation from the center. Demonstrates stagger timing with grid positioning.
+        - list [ref=e52]:
+          - listitem [ref=e53]: → Grid stagger
+          - listitem [ref=e54]: → From center
+          - listitem [ref=e55]: → Wave effect
+      - generic [ref=e56]:
+        - heading "Code" [level=3] [ref=e57]
+        - code [ref=e59]: "anime({ targets: '.dot', scale: [0.5, 1, 0.5], delay: anime.stagger(30, { grid: [13, 13], from: 'center' }), loop: true });"
+    - generic [ref=e61]:
+      - generic [ref=e62]:
+        - heading "Shape Morphing" [level=2] [ref=e63]
+        - paragraph [ref=e64]: SVG path morphing between different shapes. Smooth transitions between diamond, circle, and star shapes.
+        - list [ref=e65]:
+          - listitem [ref=e66]: → Path morphing
+          - listitem [ref=e67]: → Smooth transitions
+          - listitem [ref=e68]: → Shape blending
+      - generic [ref=e69]:
+        - heading "Code" [level=3] [ref=e70]
+        - code [ref=e72]: "anime({ targets: '.morph-shape', d: [ { value: 'M 100 30 L 170 100...' }, { value: 'M 100 30 Q 170 100...' } ], duration: 2000, easing: 'easeInOutQuad', loop: true });"
+    - generic [ref=e74]:
+      - generic [ref=e75]:
+        - heading "Motion Path" [level=2] [ref=e76]
+        - paragraph [ref=e77]: An element follows a curved SVG path. Perfect for creating smooth, natural motion along complex trajectories.
+        - list [ref=e78]:
+          - listitem [ref=e79]: → Path following
+          - listitem [ref=e80]: → Curved motion
+          - listitem [ref=e81]: → Smooth animation
+      - generic [ref=e82]:
+        - heading "Code" [level=3] [ref=e83]
+        - code [ref=e85]: "const path = anime.path('.motion-path'); anime({ targets: '.follower', translateX: path('x'), translateY: path('y'), duration: 3000, easing: 'linear', loop: true });"
+    - generic [ref=e87]:
+      - generic [ref=e88]:
+        - heading "Timeline" [level=2] [ref=e89]
+        - paragraph [ref=e90]: Orchestrate animation sequences with the powerful Timeline API. Multiple animations synchronized perfectly.
+        - list [ref=e91]:
+          - listitem [ref=e92]: → Synchronized animations
+          - listitem [ref=e93]: → Sequence control
+          - listitem [ref=e94]: → Time positions
+      - generic [ref=e95]:
+        - heading "Code" [level=3] [ref=e96]
+        - code [ref=e98]: "anime.timeline({ loop: true }) .add({ targets: '.hour-hand', rotate: 360, duration: 4000 }) .add({ targets: '.minute-hand', rotate: 360, duration: 2000 }, '-=4000');"
+  - contentinfo [ref=e99]:
+    - generic [ref=e100]:
+      - heading "Powered by Anime.js" [level=2] [ref=e101]
+      - paragraph [ref=e102]: A powerful JavaScript animation library
+      - link "Learn More" [ref=e103] [cursor=pointer]:
+        - /url: https://animejs.com
+```
