@@ -5,7 +5,7 @@ import HeroSection from "./components/HeroSection";
 import CoreBenefits from "./components/CoreBenefits";
 import ServiceShowcase from "./components/ServiceShowcase";
 import PricingSection from "./components/PricingSection";
-import SuccessStories from "./components/SuccessStories";
+import OrbitNetworkTestimonials from "./components/OrbitNetworkTestimonials";
 import SuccessMetrics from "./components/SuccessMetrics";
 import ProfessionalAuthority from "./components/ProfessionalAuthority";
 import AdditionalOfferings from "./components/AdditionalOfferings";
@@ -53,9 +53,9 @@ export default function ExecutiveWisdom() {
         />
       </section>
 
-      {/* Success Stories */}
+      {/* Success Stories - Orbit Network */}
       <section id="success-stories">
-        <SuccessStories
+        <OrbitNetworkTestimonials
           content={currentContent.successStories}
           language={language}
         />
