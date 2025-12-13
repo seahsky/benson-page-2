@@ -248,23 +248,28 @@ export default function OrbitNetworkTestimonials({
                           />
                         </svg>
 
-                        {/* Orbital Rotation Container */}
-                        <motion.div
-                          className="absolute top-1/2 left-1/2"
+                        {/* Orbital Rotation Container - Wrapper for proper centering */}
+                        <div
+                          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
                           style={{
                             width: orbit.radius * 2,
                             height: orbit.radius * 2,
-                            transformOrigin: "center center",
-                          }}
-                          animate={!prefersReducedMotion ? {
-                            rotate: orbit.direction === 1 ? 360 : -360,
-                          } : {}}
-                          transition={{
-                            duration: orbit.rotationDuration,
-                            repeat: Infinity,
-                            ease: "linear",
                           }}
                         >
+                          <motion.div
+                            className="relative w-full h-full"
+                            style={{
+                              transformOrigin: "center center",
+                            }}
+                            animate={!prefersReducedMotion ? {
+                              rotate: orbit.direction === 1 ? 360 : -360,
+                            } : {}}
+                            transition={{
+                              duration: orbit.rotationDuration,
+                              repeat: Infinity,
+                              ease: "linear",
+                            }}
+                          >
                           {/* Testimonial Node */}
                           <motion.div
                             className="absolute"
@@ -444,6 +449,7 @@ export default function OrbitNetworkTestimonials({
                           </motion.div>
                         </motion.div>
                       </div>
+                    </div>
                     );
                   })}
                 </div>
