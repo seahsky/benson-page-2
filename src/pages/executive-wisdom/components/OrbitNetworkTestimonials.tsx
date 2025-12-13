@@ -118,11 +118,11 @@ export default function OrbitNetworkTestimonials({
           </p>
         </motion.div>
 
-        {/* Orbit Network System */}
-        <div className="relative w-full max-w-7xl mx-auto mb-20">
+        {/* Orbit Network System - Breaks out of container for true viewport centering */}
+        <div className="relative w-screen left-1/2 -translate-x-1/2 mb-20">
           {/* Desktop & Tablet: Full Orbit System */}
           <div className="hidden md:block">
-            <div className="relative" style={{ height: "900px" }}>
+            <div className="relative mx-auto" style={{ height: "900px", maxWidth: "1400px" }}>
               {/* Center Hub - Benson's Photo (Simplified Focal Point) */}
               <motion.div
                 className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20"
