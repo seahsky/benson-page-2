@@ -261,9 +261,10 @@ export default function OrbitNetworkTestimonials({
                             style={{
                               transformOrigin: "center center",
                             }}
-                            animate={!prefersReducedMotion ? {
-                              rotate: orbit.direction === 1 ? 360 : -360,
-                            } : {}}
+                            // TEMP: Animation paused for alignment review
+                            // animate={!prefersReducedMotion ? {
+                            //   rotate: orbit.direction === 1 ? 360 : -360,
+                            // } : {}}
                             transition={{
                               duration: orbit.rotationDuration,
                               repeat: Infinity,
@@ -278,9 +279,10 @@ export default function OrbitNetworkTestimonials({
                               top: `calc(50% + ${position.y}px)`,
                               transform: "translate(-50%, -50%)",
                             }}
-                            animate={!prefersReducedMotion ? {
-                              rotate: orbit.direction === 1 ? -360 : 360, // Counter-rotate to keep cards upright
-                            } : {}}
+                            // TEMP: Counter-rotation paused for alignment review
+                            // animate={!prefersReducedMotion ? {
+                            //   rotate: orbit.direction === 1 ? -360 : 360, // Counter-rotate to keep cards upright
+                            // } : {}}
                             transition={{
                               duration: orbit.rotationDuration,
                               repeat: Infinity,
