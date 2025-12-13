@@ -42,10 +42,11 @@ export default function OrbitNetworkTestimonials({
       : "Hello! I've seen the success stories and would like to learn how to start my career transformation journey.";
 
   // Orbital configuration - distribute 6 testimonials across 3 layers
+  // Adjusted radii for better spacing with simplified center
   const orbitalConfig = [
-    { radius: 200, rotationDuration: 30, direction: 1, testimonials: [0, 1] },  // Inner orbit - 2 items
-    { radius: 320, rotationDuration: 40, direction: -1, testimonials: [2, 3] }, // Middle orbit - 2 items
-    { radius: 440, rotationDuration: 50, direction: 1, testimonials: [4, 5] },  // Outer orbit - 2 items
+    { radius: 180, rotationDuration: 30, direction: 1, testimonials: [0, 1] },  // Inner orbit - 2 items
+    { radius: 300, rotationDuration: 40, direction: -1, testimonials: [2, 3] }, // Middle orbit - 2 items
+    { radius: 420, rotationDuration: 50, direction: 1, testimonials: [4, 5] },  // Outer orbit - 2 items
   ];
 
   // Get industry icon and colors
@@ -121,8 +122,8 @@ export default function OrbitNetworkTestimonials({
         <div className="relative w-full max-w-7xl mx-auto mb-20">
           {/* Desktop & Tablet: Full Orbit System */}
           <div className="hidden md:block">
-            <div className="relative" style={{ height: "1000px" }}>
-              {/* Center Hub - Benson's Stats */}
+            <div className="relative" style={{ height: "900px" }}>
+              {/* Center Hub - Benson's Photo (Simplified Focal Point) */}
               <motion.div
                 className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20"
                 initial={{ scale: 0 }}
@@ -131,62 +132,59 @@ export default function OrbitNetworkTestimonials({
                 transition={{ duration: 0.8, type: "spring" }}
               >
                 <div className="relative">
-                  {/* Pulsing Glow */}
+                  {/* Outer Pulsing Glow */}
                   <motion.div
-                    className="absolute inset-0 rounded-full"
+                    className="absolute -inset-8 rounded-full"
                     style={{
-                      background: "radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, transparent 70%)",
-                      filter: "blur(20px)",
+                      background: "radial-gradient(circle, rgba(139, 92, 246, 0.25) 0%, transparent 70%)",
+                      filter: "blur(25px)",
                     }}
-                    animate={{
-                      scale: [1, 1.2, 1],
-                      opacity: [0.5, 0.8, 0.5],
-                    }}
+                    animate={!prefersReducedMotion ? {
+                      scale: [1, 1.15, 1],
+                      opacity: [0.4, 0.7, 0.4],
+                    } : {}}
                     transition={{
-                      duration: 3,
+                      duration: 4,
                       repeat: Infinity,
                       ease: "easeInOut",
                     }}
                   />
 
-                  {/* Center Card */}
-                  <div className="relative bg-white/90 backdrop-blur-md rounded-3xl p-8 border-2 border-purple-200 shadow-xl w-72">
-                    <div className="text-center">
-                      {/* Icon/Avatar Placeholder */}
-                      <div className="w-24 h-24 bg-gradient-to-br from-purple-600 to-purple-800 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                        <span className="text-4xl font-bold text-white">BW</span>
-                      </div>
+                  {/* Inner Glow Ring */}
+                  <motion.div
+                    className="absolute -inset-4 rounded-full border-2 border-purple-300/30"
+                    animate={!prefersReducedMotion ? {
+                      scale: [1, 1.05, 1],
+                      opacity: [0.3, 0.6, 0.3],
+                    } : {}}
+                    transition={{
+                      duration: 3,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                      delay: 0.5,
+                    }}
+                  />
 
-                      <h3
-                        className={`text-2xl font-bold text-purple-900 mb-6 ${
-                          language === "zh" ? "font-chinese" : ""
-                        }`}
-                      >
-                        Benson Wong
-                      </h3>
+                  {/* Photo Container - Clean Circle */}
+                  <div className="relative w-36 h-36 md:w-44 md:h-44">
+                    <img
+                      src="/images/benson-logo.png"
+                      alt="Benson Wong - Career Coach"
+                      className="w-full h-full rounded-full object-cover border-4 border-white shadow-2xl bg-gradient-to-br from-purple-100 to-purple-50"
+                    />
+                    {/* Decorative outer ring */}
+                    <div className="absolute -inset-1 rounded-full border-2 border-purple-200/50 pointer-events-none" />
+                  </div>
 
-                      {/* Stats */}
-                      <div className="space-y-3">
-                        <div className="bg-purple-50 rounded-lg p-3 border border-purple-100">
-                          <div className="text-3xl font-bold text-purple-700">100+</div>
-                          <div className={`text-sm text-slate-600 ${language === "zh" ? "font-chinese" : ""}`}>
-                            {language === "zh" ? "成功案例" : "Success Stories"}
-                          </div>
-                        </div>
-                        <div className="bg-purple-50 rounded-lg p-3 border border-purple-100">
-                          <div className="text-3xl font-bold text-purple-700">95%</div>
-                          <div className={`text-sm text-slate-600 ${language === "zh" ? "font-chinese" : ""}`}>
-                            {language === "zh" ? "客戶滿意度" : "Satisfaction"}
-                          </div>
-                        </div>
-                        <div className="bg-purple-50 rounded-lg p-3 border border-purple-100">
-                          <div className="text-3xl font-bold text-purple-700">15+</div>
-                          <div className={`text-sm text-slate-600 ${language === "zh" ? "font-chinese" : ""}`}>
-                            {language === "zh" ? "年經驗" : "Years"}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                  {/* Name Label Below Photo */}
+                  <div className="absolute -bottom-12 left-1/2 transform -translate-x-1/2 whitespace-nowrap">
+                    <span
+                      className={`text-lg font-semibold text-purple-900 bg-white/80 backdrop-blur-sm px-4 py-1.5 rounded-full shadow-md border border-purple-100 ${
+                        language === "zh" ? "font-chinese" : ""
+                      }`}
+                    >
+                      Benson Wong
+                    </span>
                   </div>
                 </div>
               </motion.div>
