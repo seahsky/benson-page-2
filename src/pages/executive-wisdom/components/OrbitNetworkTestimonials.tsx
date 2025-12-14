@@ -43,11 +43,15 @@ export default function OrbitNetworkTestimonials({
 
   // Orbital configuration - distribute 6 testimonials across 3 layers
   // Adjusted radii for better spacing with simplified center
+  // Rotation speeds slowed by 25% (duration increased by 25%)
   const orbitalConfig = [
-    { radius: 180, rotationDuration: 30, direction: 1, testimonials: [0, 1] },  // Inner orbit - 2 items
-    { radius: 300, rotationDuration: 40, direction: -1, testimonials: [2, 3] }, // Middle orbit - 2 items
-    { radius: 420, rotationDuration: 50, direction: 1, testimonials: [4, 5] },  // Outer orbit - 2 items
+    { radius: 180, rotationDuration: 37.5, direction: 1, testimonials: [0, 1] },  // Inner orbit - 2 items (was 30s)
+    { radius: 300, rotationDuration: 50, direction: -1, testimonials: [2, 3] }, // Middle orbit - 2 items (was 40s)
+    { radius: 420, rotationDuration: 62.5, direction: 1, testimonials: [4, 5] },  // Outer orbit - 2 items (was 50s)
   ];
+
+  // Check if any card is hovered (for pausing orbit animation)
+  const isAnyHovered = hoveredId !== null;
 
   // Get industry icon and colors
   const getIndustryData = (industry?: string) => {
@@ -93,8 +97,8 @@ export default function OrbitNetworkTestimonials({
       </div>
 
       <div className="container-custom relative z-10">
-        {/* Section Header */}
-        <motion.div
+        {/* Section Header - HIDDEN FOR REWORK */}
+        {/* <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -116,53 +120,62 @@ export default function OrbitNetworkTestimonials({
           >
             {content.subtitle}
           </p>
-        </motion.div>
+        </motion.div> */}
 
         {/* Orbit Network System - Breaks out of container for true viewport centering */}
-        <div className="relative w-screen left-1/2 -translate-x-1/2 mb-20">
+        <div className="relative w-screen left-1/2 -translate-x-1/2">
           {/* Desktop & Tablet: Full Orbit System */}
           <div className="hidden md:block">
-            <div className="relative mx-auto" style={{ height: "900px", maxWidth: "1400px" }}>
+            <div className="relative mx-auto" style={{ height: "100vh", maxWidth: "1400px" }}>
               {/* Center Hub - Benson's Photo (Simplified Focal Point) */}
+              {/* z-index drops to 1 when any card is hovered so expanded content (z-100) isn't blocked */}
               <motion.div
-                className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20"
-                initial={{ scale: 0 }}
-                whileInView={{ scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, type: "spring" }}
+                className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+                style={{ zIndex: isAnyHovered ? 1 : 20 }}
+                // PAUSED: Initial scale animation
+                // initial={{ scale: 0 }}
+                // whileInView={{ scale: 1 }}
+                // viewport={{ once: true }}
+                // transition={{ duration: 0.8, type: "spring" }}
               >
                 <div className="relative">
-                  {/* Outer Pulsing Glow */}
+                  {/* Outer Pulsing Glow - PAUSED */}
                   <motion.div
                     className="absolute -inset-8 rounded-full"
                     style={{
                       background: "radial-gradient(circle, rgba(139, 92, 246, 0.25) 0%, transparent 70%)",
                       filter: "blur(25px)",
+                      opacity: 0.5, // Static opacity while paused
                     }}
-                    animate={!prefersReducedMotion ? {
-                      scale: [1, 1.15, 1],
-                      opacity: [0.4, 0.7, 0.4],
-                    } : {}}
-                    transition={{
-                      duration: 4,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                    }}
+                    // PAUSED: Pulsing animation
+                    // animate={!prefersReducedMotion ? {
+                    //   scale: [1, 1.15, 1],
+                    //   opacity: [0.4, 0.7, 0.4],
+                    // } : {}}
+                    // transition={{
+                    //   duration: 4,
+                    //   repeat: Infinity,
+                    //   ease: "easeInOut",
+                    // }}
                   />
 
-                  {/* Inner Glow Ring */}
+                  {/* Inner Glow Ring - PAUSED */}
                   <motion.div
                     className="absolute -inset-4 rounded-full border-2 border-purple-300/30"
-                    animate={!prefersReducedMotion ? {
-                      scale: [1, 1.05, 1],
-                      opacity: [0.3, 0.6, 0.3],
-                    } : {}}
-                    transition={{
-                      duration: 3,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                      delay: 0.5,
+                    style={{
+                      opacity: 0.4, // Static opacity while paused
                     }}
+                    // PAUSED: Ring animation
+                    // animate={!prefersReducedMotion ? {
+                    //   scale: [1, 1.05, 1],
+                    //   opacity: [0.3, 0.6, 0.3],
+                    // } : {}}
+                    // transition={{
+                    //   duration: 3,
+                    //   repeat: Infinity,
+                    //   ease: "easeInOut",
+                    //   delay: 0.5,
+                    // }}
                   />
 
                   {/* Photo Container - Clean Circle */}
@@ -189,402 +202,267 @@ export default function OrbitNetworkTestimonials({
                 </div>
               </motion.div>
 
-              {/* Orbital Paths and Testimonials */}
+              {/* All Orbital Layers */}
               {orbitalConfig.map((orbit, orbitIndex) => (
-                <div key={orbitIndex}>
+                <div key={`orbit-${orbitIndex}`}>
                   {/* Orbital Ring Visualization */}
-                  <motion.div
-                    className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-full border border-dashed opacity-30"
+                  <div
+                    className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-dashed opacity-40 pointer-events-none"
                     style={{
                       width: orbit.radius * 2,
                       height: orbit.radius * 2,
-                      borderColor: orbit.testimonials.map(i => {
-                        const industry = content.cases[i]?.industry;
+                      borderColor: (() => {
+                        const industry = content.cases[orbit.testimonials[0]]?.industry;
                         const { colors } = getIndustryData(industry);
                         return colors.accent;
-                      })[0] || "#9ca3af",
+                      })(),
                     }}
                   />
 
                   {/* Testimonials in this orbit */}
-                  {orbit.testimonials.map((testimonialIndex, positionInOrbit) => {
-                    const story = content.cases[testimonialIndex];
-                    if (!story) return null;
+                    {orbit.testimonials.map((testimonialIndex, positionInOrbit) => {
+                      const story = content.cases[testimonialIndex];
+                      if (!story) return null;
 
-                    const { icon: IconComponent, colors } = getIndustryData(story.industry);
-                    const position = getOrbitPosition(orbit.radius, positionInOrbit, orbit.testimonials.length);
-                    const isHovered = hoveredId === story.id;
-                    const isOtherHovered = hoveredId !== null && !isHovered;
+                      const { icon: IconComponent, colors } = getIndustryData(story.industry);
+                      const position = getOrbitPosition(orbit.radius, positionInOrbit, orbit.testimonials.length);
+                      const isHovered = hoveredId === story.id;
+                      const isOtherHovered = hoveredId !== null && !isHovered;
 
-                    return (
-                      <div key={story.id}>
-                        {/* Connection Line to Center */}
-                        <svg
-                          className="absolute top-1/2 left-1/2 pointer-events-none"
-                          style={{
-                            width: orbit.radius * 2,
-                            height: orbit.radius * 2,
-                            transform: "translate(-50%, -50%)",
-                            opacity: isHovered ? 0.6 : isOtherHovered ? 0.1 : 0.2,
-                            transition: "opacity 0.3s ease",
-                          }}
-                        >
-                          <motion.line
-                            x1="50%"
-                            y1="50%"
-                            x2={`calc(50% + ${position.x}px)`}
-                            y2={`calc(50% + ${position.y}px)`}
-                            stroke={colors.accent}
-                            strokeWidth={isHovered ? "2" : "1"}
-                            strokeDasharray="5,5"
-                            animate={!prefersReducedMotion && isHovered ? {
-                              strokeDashoffset: [0, -10],
-                            } : {}}
-                            transition={{
-                              duration: 1,
-                              repeat: Infinity,
-                              ease: "linear",
-                            }}
-                          />
-                        </svg>
-
-                        {/* Orbital Rotation Container - Wrapper for proper centering */}
-                        <div
-                          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-                          style={{
-                            width: orbit.radius * 2,
-                            height: orbit.radius * 2,
-                          }}
-                        >
-                          <motion.div
-                            className="relative w-full h-full"
+                      return (
+                        <div key={story.id}>
+                          {/* Connection Line to Center */}
+                          <svg
+                            className="absolute top-1/2 left-1/2 pointer-events-none"
                             style={{
-                              transformOrigin: "center center",
-                            }}
-                            // TEMP: Animation paused for alignment review
-                            // animate={!prefersReducedMotion ? {
-                            //   rotate: orbit.direction === 1 ? 360 : -360,
-                            // } : {}}
-                            transition={{
-                              duration: orbit.rotationDuration,
-                              repeat: Infinity,
-                              ease: "linear",
-                            }}
-                          >
-                          {/* Testimonial Node */}
-                          <motion.div
-                            className="absolute"
-                            style={{
-                              left: `calc(50% + ${position.x}px)`,
-                              top: `calc(50% + ${position.y}px)`,
+                              width: orbit.radius * 2,
+                              height: orbit.radius * 2,
                               transform: "translate(-50%, -50%)",
+                              opacity: isHovered ? 0.6 : isOtherHovered ? 0.1 : 0.3,
+                              transition: "opacity 0.3s ease",
                             }}
-                            // TEMP: Counter-rotation paused for alignment review
-                            // animate={!prefersReducedMotion ? {
-                            //   rotate: orbit.direction === 1 ? -360 : 360, // Counter-rotate to keep cards upright
-                            // } : {}}
-                            transition={{
-                              duration: orbit.rotationDuration,
-                              repeat: Infinity,
-                              ease: "linear",
-                            }}
-                            whileHover={{ scale: 1.05 }}
                           >
-                            <motion.div
-                              className="relative cursor-pointer"
-                              onHoverStart={() => setHoveredId(story.id)}
-                              onHoverEnd={() => setHoveredId(null)}
-                              animate={{
-                                scale: isHovered ? 3.3 : 1,
-                                zIndex: isHovered ? 50 : 10,
-                                opacity: isOtherHovered ? 0.3 : 1,
-                              }}
-                              transition={{
-                                type: "spring",
-                                stiffness: 300,
-                                damping: 25,
+                            <line
+                              x1="50%"
+                              y1="50%"
+                              x2={`calc(50% + ${position.x}px)`}
+                              y2={`calc(50% + ${position.y}px)`}
+                              stroke={colors.accent}
+                              strokeWidth={isHovered ? "2" : "1"}
+                              strokeDasharray="5,5"
+                            />
+                          </svg>
+
+                          {/* Testimonial Node - All layers rotate at different speeds/directions */}
+                          {/* Using CSS animation for pause-on-hover support */}
+                          <div
+                            className="absolute top-1/2 left-1/2 pointer-events-none"
+                            style={{
+                              width: orbit.radius * 2,
+                              height: orbit.radius * 2,
+                              transform: "translate(-50%, -50%)",
+                              animation: !prefersReducedMotion
+                                ? `orbitRotate${orbit.direction === 1 ? "" : "Reverse"} ${orbit.rotationDuration}s linear infinite`
+                                : "none",
+                              animationPlayState: isAnyHovered ? "paused" : "running",
+                              zIndex: isAnyHovered ? 30 : 5,
+                            }}
+                          >
+                            <div
+                              className="absolute"
+                              style={{
+                                left: `calc(50% + ${position.x}px)`,
+                                top: `calc(50% + ${position.y}px)`,
+                                transform: "translate(-50%, -50%)",
+                                // Counter-rotation to keep cards upright
+                                animation: !prefersReducedMotion
+                                  ? `counterRotate${orbit.direction === 1 ? "" : "Reverse"} ${orbit.rotationDuration}s linear infinite`
+                                  : "none",
+                                animationPlayState: isAnyHovered ? "paused" : "running",
                               }}
                             >
-                              {/* Glow Effect */}
                               <motion.div
-                                className="absolute inset-0 rounded-2xl"
-                                style={{
-                                  background: `radial-gradient(circle, ${colors.glow} 0%, transparent 70%)`,
-                                  filter: "blur(15px)",
-                                }}
+                                className="relative cursor-pointer pointer-events-auto"
+                                style={{ width: "120px", height: "120px" }}
+                                onHoverStart={() => setHoveredId(story.id)}
+                                onHoverEnd={() => setHoveredId(null)}
                                 animate={{
-                                  opacity: isHovered ? 0.8 : 0.4,
-                                  scale: isHovered ? 1.3 : 1,
+                                  // Removed scale: 3.3 - was causing hover bounds to be 1155px, preventing onHoverEnd
+                                  zIndex: isHovered ? 50 : 10,
+                                  opacity: isOtherHovered ? 0.3 : 1,
                                 }}
-                              />
-
-                              {/* Card */}
-                              <div
-                                className="relative bg-white/95 backdrop-blur-xl rounded-2xl border-2 overflow-hidden shadow-lg"
-                                style={{
-                                  borderColor: colors.accent,
-                                  width: isHovered ? "350px" : "120px",
-                                  minHeight: isHovered ? "auto" : "120px",
-                                  filter: isOtherHovered ? "blur(2px)" : "none",
-                                  transition: "all 0.3s ease",
+                                transition={{
+                                  type: "spring",
+                                  stiffness: 300,
+                                  damping: 25,
                                 }}
                               >
-                                {/* Collapsed State */}
-                                {!isHovered && (
-                                  <div className="p-6 flex flex-col items-center justify-center h-full">
-                                    <IconComponent
-                                      className="w-8 h-8 mb-2"
-                                      style={{ color: colors.accent }}
-                                    />
-                                    <div
-                                      className={`text-xs text-center font-medium text-slate-800 ${
-                                        language === "zh" ? "font-chinese" : ""
-                                      }`}
-                                    >
-                                      {story.title.split(" ").slice(0, 2).join(" ")}
-                                    </div>
-                                  </div>
-                                )}
+                                {/* Glow Effect */}
+                                <motion.div
+                                  className="absolute inset-0 rounded-2xl"
+                                  style={{
+                                    background: `radial-gradient(circle, ${colors.glow} 0%, transparent 70%)`,
+                                    filter: "blur(15px)",
+                                  }}
+                                  animate={{
+                                    opacity: isHovered ? 0.8 : 0.4,
+                                    scale: isHovered ? 1.3 : 1,
+                                  }}
+                                />
 
-                                {/* Expanded State */}
-                                {isHovered && (
-                                  <div className="p-6 max-h-96 overflow-y-auto custom-scrollbar">
-                                    {/* Icon Header */}
-                                    <div className="flex items-center gap-3 mb-4">
+                                {/* Card - absolutely positioned at center of parent reference frame */}
+                                {/* z-index on card directly ensures expanded content appears above center hub */}
+                                <div
+                                  className="absolute left-1/2 top-1/2 bg-white/95 backdrop-blur-xl rounded-2xl border-2 overflow-hidden shadow-lg"
+                                  style={{
+                                    borderColor: colors.accent,
+                                    width: isHovered ? "350px" : "120px",
+                                    minHeight: isHovered ? "auto" : "120px",
+                                    transform: "translate(-50%, -50%)",
+                                    filter: isOtherHovered ? "blur(2px)" : "none",
+                                    transition: "all 0.3s ease",
+                                    zIndex: isHovered ? 100 : "auto",
+                                  }}
+                                >
+                                  {/* Collapsed State */}
+                                  {!isHovered && (
+                                    <div className="p-6 flex flex-col items-center justify-center h-full">
+                                      <IconComponent
+                                        className="w-8 h-8 mb-2"
+                                        style={{ color: colors.accent }}
+                                      />
                                       <div
-                                        className="w-12 h-12 rounded-lg flex items-center justify-center"
-                                        style={{ backgroundColor: `${colors.accent}20` }}
+                                        className={`text-xs text-center font-medium text-slate-800 ${
+                                          language === "zh" ? "font-chinese" : ""
+                                        }`}
                                       >
-                                        <IconComponent
-                                          className="w-6 h-6"
-                                          style={{ color: colors.accent }}
-                                        />
+                                        {story.title.split(" ").slice(0, 2).join(" ")}
                                       </div>
-                                      <div>
-                                        <h3
-                                          className={`text-base font-bold text-slate-900 mb-1 ${
-                                            language === "zh" ? "font-chinese" : ""
-                                          }`}
+                                    </div>
+                                  )}
+
+                                  {/* Expanded State */}
+                                  {isHovered && (
+                                    <div className="p-6 max-h-96 overflow-y-auto custom-scrollbar">
+                                      {/* Icon Header */}
+                                      <div className="flex items-center gap-3 mb-4">
+                                        <div
+                                          className="w-12 h-12 rounded-lg flex items-center justify-center"
+                                          style={{ backgroundColor: `${colors.accent}20` }}
                                         >
-                                          {story.title}
-                                        </h3>
-                                        {story.industry && (
-                                          <span
-                                            className={`text-xs px-2 py-1 rounded font-medium ${
+                                          <IconComponent
+                                            className="w-6 h-6"
+                                            style={{ color: colors.accent }}
+                                          />
+                                        </div>
+                                        <div>
+                                          <h3
+                                            className={`text-base font-bold text-slate-900 mb-1 ${
                                               language === "zh" ? "font-chinese" : ""
                                             }`}
-                                            style={{
-                                              backgroundColor: `${colors.accent}20`,
-                                              color: colors.accent,
-                                            }}
                                           >
-                                            {story.industry}
-                                          </span>
-                                        )}
+                                            {story.title}
+                                          </h3>
+                                          {story.industry && (
+                                            <span
+                                              className={`text-xs px-2 py-1 rounded font-medium ${
+                                                language === "zh" ? "font-chinese" : ""
+                                              }`}
+                                              style={{
+                                                backgroundColor: `${colors.accent}20`,
+                                                color: colors.accent,
+                                              }}
+                                            >
+                                              {story.industry}
+                                            </span>
+                                          )}
+                                        </div>
                                       </div>
-                                    </div>
 
-                                    {/* Background */}
-                                    <div className="mb-4">
-                                      <h4
-                                        className={`text-xs font-semibold mb-2 ${
-                                          language === "zh" ? "font-chinese" : ""
-                                        }`}
-                                        style={{ color: colors.accent }}
-                                      >
-                                        {language === "zh" ? "背景：" : "Background:"}
-                                      </h4>
-                                      <p
-                                        className={`text-xs text-slate-700 leading-relaxed ${
-                                          language === "zh" ? "font-chinese" : ""
-                                        }`}
-                                      >
-                                        {story.background}
-                                      </p>
-                                    </div>
-
-                                    {/* Outcome */}
-                                    <div className="mb-4">
-                                      <h4
-                                        className={`text-xs font-semibold mb-2 ${
-                                          language === "zh" ? "font-chinese" : ""
-                                        }`}
-                                        style={{ color: colors.accent }}
-                                      >
-                                        {language === "zh" ? "成果：" : "Outcome:"}
-                                      </h4>
-                                      <p
-                                        className={`text-xs text-slate-900 font-medium leading-relaxed ${
-                                          language === "zh" ? "font-chinese" : ""
-                                        }`}
-                                      >
-                                        {story.outcome}
-                                      </p>
-                                    </div>
-
-                                    {/* Testimonial */}
-                                    {story.testimonial && (
-                                      <div
-                                        className="rounded-lg p-3 border-l-4"
-                                        style={{
-                                          backgroundColor: `${colors.accent}10`,
-                                          borderColor: colors.accent,
-                                        }}
-                                      >
-                                        <Quote
-                                          className="w-4 h-4 mb-2 opacity-50"
+                                      {/* Background */}
+                                      <div className="mb-4">
+                                        <h4
+                                          className={`text-xs font-semibold mb-2 ${
+                                            language === "zh" ? "font-chinese" : ""
+                                          }`}
                                           style={{ color: colors.accent }}
-                                        />
+                                        >
+                                          {language === "zh" ? "背景：" : "Background:"}
+                                        </h4>
                                         <p
-                                          className={`text-xs text-slate-700 italic leading-relaxed ${
+                                          className={`text-xs text-slate-700 leading-relaxed ${
                                             language === "zh" ? "font-chinese" : ""
                                           }`}
                                         >
-                                          "{story.testimonial}"
+                                          {story.background}
                                         </p>
                                       </div>
-                                    )}
-                                  </div>
-                                )}
-                              </div>
-                            </motion.div>
-                          </motion.div>
-                        </motion.div>
-                      </div>
-                    </div>
-                    );
-                  })}
+
+                                      {/* Outcome */}
+                                      <div className="mb-4">
+                                        <h4
+                                          className={`text-xs font-semibold mb-2 ${
+                                            language === "zh" ? "font-chinese" : ""
+                                          }`}
+                                          style={{ color: colors.accent }}
+                                        >
+                                          {language === "zh" ? "成果：" : "Outcome:"}
+                                        </h4>
+                                        <p
+                                          className={`text-xs text-slate-900 font-medium leading-relaxed ${
+                                            language === "zh" ? "font-chinese" : ""
+                                          }`}
+                                        >
+                                          {story.outcome}
+                                        </p>
+                                      </div>
+
+                                      {/* Testimonial */}
+                                      {story.testimonial && (
+                                        <div
+                                          className="rounded-lg p-3 border-l-4"
+                                          style={{
+                                            backgroundColor: `${colors.accent}10`,
+                                            borderColor: colors.accent,
+                                          }}
+                                        >
+                                          <Quote
+                                            className="w-4 h-4 mb-2 opacity-50"
+                                            style={{ color: colors.accent }}
+                                          />
+                                          <p
+                                            className={`text-xs text-slate-700 italic leading-relaxed ${
+                                              language === "zh" ? "font-chinese" : ""
+                                            }`}
+                                          >
+                                            "{story.testimonial}"
+                                          </p>
+                                        </div>
+                                      )}
+                                    </div>
+                                  )}
+                                </div>
+                              </motion.div>
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })}
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Mobile: Vertical Stack */}
-          <div className="md:hidden space-y-6">
+          {/* Mobile: Vertical Stack - HIDDEN FOR REWORK */}
+          {/* <div className="md:hidden space-y-6">
             {content.cases.map((story, index) => {
-              const { icon: IconComponent, colors } = getIndustryData(story.industry);
-
-              return (
-                <motion.div
-                  key={story.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="relative"
-                >
-                  {/* Glow Effect */}
-                  <div
-                    className="absolute inset-0 rounded-2xl opacity-40"
-                    style={{
-                      background: `radial-gradient(circle, ${colors.glow} 0%, transparent 70%)`,
-                      filter: "blur(20px)",
-                    }}
-                  />
-
-                  {/* Card */}
-                  <div
-                    className="relative bg-white/95 backdrop-blur-xl rounded-2xl p-6 border-2 shadow-lg"
-                    style={{ borderColor: colors.accent }}
-                  >
-                    {/* Header */}
-                    <div className="flex items-center gap-3 mb-4">
-                      <div
-                        className="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0"
-                        style={{ backgroundColor: `${colors.accent}20` }}
-                      >
-                        <IconComponent className="w-6 h-6" style={{ color: colors.accent }} />
-                      </div>
-                      <div>
-                        <h3
-                          className={`text-lg font-bold text-slate-900 mb-1 ${
-                            language === "zh" ? "font-chinese" : ""
-                          }`}
-                        >
-                          {story.title}
-                        </h3>
-                        {story.industry && (
-                          <span
-                            className={`text-xs px-2 py-1 rounded font-medium ${
-                              language === "zh" ? "font-chinese" : ""
-                            }`}
-                            style={{
-                              backgroundColor: `${colors.accent}20`,
-                              color: colors.accent,
-                            }}
-                          >
-                            {story.industry}
-                          </span>
-                        )}
-                      </div>
-                    </div>
-
-                    {/* Background */}
-                    <div className="mb-4">
-                      <h4
-                        className={`text-sm font-semibold mb-2 ${
-                          language === "zh" ? "font-chinese" : ""
-                        }`}
-                        style={{ color: colors.accent }}
-                      >
-                        {language === "zh" ? "背景：" : "Background:"}
-                      </h4>
-                      <p
-                        className={`text-sm text-slate-700 leading-relaxed ${
-                          language === "zh" ? "font-chinese" : ""
-                        }`}
-                      >
-                        {story.background}
-                      </p>
-                    </div>
-
-                    {/* Outcome */}
-                    <div className="mb-4">
-                      <h4
-                        className={`text-sm font-semibold mb-2 ${
-                          language === "zh" ? "font-chinese" : ""
-                        }`}
-                        style={{ color: colors.accent }}
-                      >
-                        {language === "zh" ? "成果：" : "Outcome:"}
-                      </h4>
-                      <p
-                        className={`text-sm text-slate-900 font-medium leading-relaxed ${
-                          language === "zh" ? "font-chinese" : ""
-                        }`}
-                      >
-                        {story.outcome}
-                      </p>
-                    </div>
-
-                    {/* Testimonial */}
-                    {story.testimonial && (
-                      <div
-                        className="rounded-lg p-4 border-l-4"
-                        style={{
-                          backgroundColor: `${colors.accent}10`,
-                          borderColor: colors.accent,
-                        }}
-                      >
-                        <Quote className="w-5 h-5 mb-2 opacity-50" style={{ color: colors.accent }} />
-                        <p
-                          className={`text-sm text-slate-700 italic leading-relaxed ${
-                            language === "zh" ? "font-chinese" : ""
-                          }`}
-                        >
-                          "{story.testimonial}"
-                        </p>
-                      </div>
-                    )}
-                  </div>
-                </motion.div>
-              );
+              ... mobile cards hidden for rework ...
             })}
-          </div>
+          </div> */}
         </div>
 
-        {/* Call to Action */}
-        <motion.div
+        {/* Call to Action - HIDDEN FOR REWORK */}
+        {/* <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -620,11 +498,30 @@ export default function OrbitNetworkTestimonials({
             size="xl"
             className="shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300"
           />
-        </motion.div>
+        </motion.div> */}
       </div>
 
-      {/* Custom Scrollbar Styles */}
+      {/* Custom Scrollbar Styles + Orbit Animation Keyframes */}
       <style>{`
+        /* Orbit rotation keyframes */
+        @keyframes orbitRotate {
+          from { transform: translate(-50%, -50%) rotate(0deg); }
+          to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+        @keyframes orbitRotateReverse {
+          from { transform: translate(-50%, -50%) rotate(0deg); }
+          to { transform: translate(-50%, -50%) rotate(-360deg); }
+        }
+        /* Counter-rotation keyframes to keep cards upright */
+        @keyframes counterRotate {
+          from { transform: translate(-50%, -50%) rotate(0deg); }
+          to { transform: translate(-50%, -50%) rotate(-360deg); }
+        }
+        @keyframes counterRotateReverse {
+          from { transform: translate(-50%, -50%) rotate(0deg); }
+          to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
         .custom-scrollbar::-webkit-scrollbar {
           width: 4px;
         }
