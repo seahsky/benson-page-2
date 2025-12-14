@@ -2,7 +2,6 @@ import { useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { Quote, TrendingUp, Award, Users, Sparkles, Star } from "lucide-react";
 import type { Language } from "@/data/content";
-import ContactButtonMenu from "@/components/ContactButtonMenu";
 
 interface OrbitNetworkTestimonialsProps {
   content: {
@@ -35,11 +34,6 @@ export default function OrbitNetworkTestimonials({
 }: OrbitNetworkTestimonialsProps) {
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const prefersReducedMotion = useReducedMotion();
-
-  const whatsappMessage =
-    language === "zh"
-      ? "您好！我看到了很多成功案例，希望能了解如何開始我的職涯轉變之旅。"
-      : "Hello! I've seen the success stories and would like to learn how to start my career transformation journey.";
 
   // Orbital configuration - distribute 6 testimonials across 3 layers
   // Adjusted radii for better spacing with simplified center
