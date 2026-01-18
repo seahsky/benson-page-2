@@ -113,6 +113,10 @@ export interface Content {
       text: string;
       author: string;
     };
+    oprahQuote: {
+      text: string;
+      author: string;
+    };
     plans: ServicePlan[];
     footnotes: string[];
   };
@@ -367,6 +371,10 @@ export const content: Record<Language, Content> = {
       quote: {
         text: "Setting goals is the first step to turning invisible dreams into visible reality.",
         author: "Tony Robbins"
+      },
+      oprahQuote: {
+        text: "A coach can help you stop those crazy voices in your head that keep telling you: you're not good enough.",
+        author: "Oprah Winfrey"
       },
       plans: [
         {
@@ -1012,6 +1020,10 @@ export const content: Record<Language, Content> = {
         text: "設定目標是將無形的夢想轉化為有形現實的第一步。",
         author: "Tony Robbins"
       },
+      oprahQuote: {
+        text: "教練能幫助你停止腦中那些瘋狂的聲音，這些聲音總是在告訴你：你不夠好。",
+        author: "歐普拉"
+      },
       plans: [
         {
           name: "啟航計畫",
@@ -1019,7 +1031,7 @@ export const content: Record<Language, Content> = {
           suggestedDuration: "單次晤談",
           contractDuration: "3個月*",
           targetAudience: "有特定問題或單一主題者",
-          price: 220,
+          price: 258,
           features: [
             "90 分鐘深度晤談",
             "個人化職涯指導",
@@ -1034,7 +1046,7 @@ export const content: Record<Language, Content> = {
           suggestedDuration: "5-8週",
           contractDuration: "6個月*",
           targetAudience: "最多人選擇，大部分客戶5次內達成目標",
-          price: 990,
+          price: 1088,
           additionalRate: 198,
           features: [
             "5 × 90 分鐘晤談",
@@ -1050,7 +1062,7 @@ export const content: Record<Language, Content> = {
           suggestedDuration: "10-16週",
           contractDuration: "12個月*",
           targetAudience: "需要全面引導或涵蓋多個主題者",
-          price: 1880,
+          price: 2088,
           additionalRate: 178,
           features: [
             "10 × 90 分鐘晤談",
@@ -1443,13 +1455,6 @@ export const content: Record<Language, Content> = {
       subtitle: "",
       channels: [
         {
-          name: "whatsapp",
-          label: "WhatsApp",
-          value: "+852 9702 0812",
-          link: "https://wa.me/85297020812",
-          icon: "MessageCircle",
-        },
-        {
           name: "line",
           label: "LINE",
           value: "ktuin0918",
@@ -1457,11 +1462,11 @@ export const content: Record<Language, Content> = {
           icon: "MessageSquare",
         },
         {
-          name: "threads",
-          label: "Threads",
-          value: "@benson.pcc.coach",
-          link: "https://www.threads.net/@benson.pcc.coach",
-          icon: "AtSign",
+          name: "whatsapp",
+          label: "WhatsApp",
+          value: "+852 9702 0812",
+          link: "https://wa.me/85297020812",
+          icon: "MessageCircle",
         },
         {
           name: "facebook",
@@ -1469,6 +1474,13 @@ export const content: Record<Language, Content> = {
           value: "@benson.pcc.coach",
           link: "https://www.facebook.com/benson.pcc.coach",
           icon: "Facebook",
+        },
+        {
+          name: "threads",
+          label: "Threads",
+          value: "@benson.pcc.coach",
+          link: "https://www.threads.net/@benson.pcc.coach",
+          icon: "AtSign",
         },
       ],
       cta: "今天就開始您的職涯轉變",
