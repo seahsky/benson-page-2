@@ -1,9 +1,23 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Award, TrendingUp, Users } from "lucide-react";
+import { Award, TrendingUp, Users, Heart, type LucideIcon } from "lucide-react";
 import type { Language } from "@/data/content";
 import { InteractiveLightBulb } from "@/components/InteractiveLightBulb";
 import ContactButtonMenu from "@/components/ContactButtonMenu";
+
+// Map icon names to components
+const iconMap: Record<string, LucideIcon> = {
+  TrendingUp,
+  Users,
+  Award,
+  Heart,
+};
+
+interface CoreValue {
+  icon: string;
+  title: string;
+  description: string;
+}
 
 interface HeroSectionProps {
   content: {
@@ -11,6 +25,8 @@ interface HeroSectionProps {
     subtitle: string;
     description: string;
     credentials: string[];
+    coreValuesTitle?: string;
+    coreValues?: CoreValue[];
     cta: {
       primary: string;
       secondary: string;
@@ -81,59 +97,45 @@ export default function HeroSection({ content, language }: HeroSectionProps) {
 
             {/* Core Benefits Preview */}
             <div className="space-y-4 fade-in-up stagger-3">
-              <div className="flex items-start gap-4 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-                <TrendingUp className="w-6 h-6 text-primary mt-1 flex-shrink-0" />
-                <div>
-                  <h3
-                    className={`font-semibold text-lg mb-1 text-gray-900 ${language === "zh" ? "font-chinese" : ""}`}
-                  >
-                    {language === "zh" ? "自信心提升" : "Increased Confidence"}
-                  </h3>
-                  <p
-                    className={`text-sm text-gray-600 ${language === "zh" ? "font-chinese" : ""}`}
-                  >
-                    {language === "zh"
-                      ? "第一次真正看見並能清楚表達自己的優勢與能力"
-                      : "See and clearly articulate your strengths and abilities for the first time"}
-                  </p>
-                </div>
-              </div>
+              {/* Core Values Title */}
+              {content.coreValuesTitle && (
+                <h3
+                  className={`text-lg font-semibold text-primary mb-2 ${
+                    language === "zh" ? "font-chinese" : ""
+                  }`}
+                >
+                  {content.coreValuesTitle}
+                </h3>
+              )}
 
-              <div className="flex items-start gap-4 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-                <Users className="w-6 h-6 text-primary mt-1 flex-shrink-0" />
-                <div>
-                  <h3
-                    className={`font-semibold text-lg mb-1 text-gray-900 ${language === "zh" ? "font-chinese" : ""}`}
+              {/* Dynamic Core Values */}
+              {content.coreValues?.map((value, index) => {
+                const IconComponent = iconMap[value.icon] || TrendingUp;
+                return (
+                  <div
+                    key={index}
+                    className="flex items-start gap-4 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
                   >
-                    {language === "zh" ? "目標更明確" : "Clearer Goals"}
-                  </h3>
-                  <p
-                    className={`text-sm text-gray-600 ${language === "zh" ? "font-chinese" : ""}`}
-                  >
-                    {language === "zh"
-                      ? "重新評估並清楚知道自己在職涯中真正想要的"
-                      : "Re-evaluate and clearly understand what you truly want in your career"}
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-                <Award className="w-6 h-6 text-primary mt-1 flex-shrink-0" />
-                <div>
-                  <h3
-                    className={`font-semibold text-lg mb-1 text-gray-900 ${language === "zh" ? "font-chinese" : ""}`}
-                  >
-                    {language === "zh" ? "安心與踏實感" : "Peace of Mind"}
-                  </h3>
-                  <p
-                    className={`text-sm text-gray-600 ${language === "zh" ? "font-chinese" : ""}`}
-                  >
-                    {language === "zh"
-                      ? "在重大決定中獲得信心，確認做的是最適合自己的選擇"
-                      : "Gain confidence in major decisions, ensuring the best choice for yourself"}
-                  </p>
-                </div>
-              </div>
+                    <IconComponent className="w-6 h-6 text-primary mt-1 flex-shrink-0" />
+                    <div>
+                      <h3
+                        className={`font-semibold text-lg mb-1 text-gray-900 ${
+                          language === "zh" ? "font-chinese" : ""
+                        }`}
+                      >
+                        {value.title}
+                      </h3>
+                      <p
+                        className={`text-sm text-gray-600 ${
+                          language === "zh" ? "font-chinese" : ""
+                        }`}
+                      >
+                        {value.description}
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
 
             {/* Call-to-Action Buttons */}
@@ -148,20 +150,23 @@ export default function HeroSection({ content, language }: HeroSectionProps) {
                 className="bg-primary text-white hover:bg-primary/90 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
               />
 
-              <Button
-                size="xl"
-                variant="outline"
-                className={`border-primary text-primary hover:bg-primary hover:text-white transition-colors ${
-                  language === "zh" ? "font-chinese" : ""
-                }`}
-                onClick={() => {
-                  document
-                    .getElementById("services")
-                    ?.scrollIntoView({ behavior: "smooth" });
-                }}
-              >
-                {content.cta.secondary}
-              </Button>
+              {/* Only show secondary button if text is provided */}
+              {content.cta.secondary && (
+                <Button
+                  size="xl"
+                  variant="outline"
+                  className={`border-primary text-primary hover:bg-primary hover:text-white transition-colors ${
+                    language === "zh" ? "font-chinese" : ""
+                  }`}
+                  onClick={() => {
+                    document
+                      .getElementById("services")
+                      ?.scrollIntoView({ behavior: "smooth" });
+                  }}
+                >
+                  {content.cta.secondary}
+                </Button>
+              )}
             </div>
           </div>
 

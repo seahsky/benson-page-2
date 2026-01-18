@@ -35,13 +35,13 @@ export default function OrbitNetworkTestimonials({
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const prefersReducedMotion = useReducedMotion();
 
-  // Orbital configuration - distribute 6 testimonials across 3 layers
+  // Orbital configuration - distribute 9 testimonials across 3 layers (3 per orbit)
   // Adjusted radii for better spacing with simplified center
   // Rotation speeds slowed by 25% (duration increased by 25%)
   const orbitalConfig = [
-    { radius: 180, rotationDuration: 37.5, direction: 1, testimonials: [0, 1] },  // Inner orbit - 2 items (was 30s)
-    { radius: 300, rotationDuration: 50, direction: -1, testimonials: [2, 3] }, // Middle orbit - 2 items (was 40s)
-    { radius: 420, rotationDuration: 62.5, direction: 1, testimonials: [4, 5] },  // Outer orbit - 2 items (was 50s)
+    { radius: 180, rotationDuration: 37.5, direction: 1, testimonials: [0, 1, 2] },  // Inner orbit - 3 items
+    { radius: 300, rotationDuration: 50, direction: -1, testimonials: [3, 4, 5] }, // Middle orbit - 3 items
+    { radius: 420, rotationDuration: 62.5, direction: 1, testimonials: [6, 7, 8] },  // Outer orbit - 3 items
   ];
 
   // Check if any card is hovered (for pausing orbit animation)
@@ -91,30 +91,29 @@ export default function OrbitNetworkTestimonials({
       </div>
 
       <div className="container-custom relative z-10">
-        {/* Section Header - HIDDEN FOR REWORK */}
-        {/* <motion.div
+        {/* Section Header */}
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-20"
+          className="text-center mb-12"
         >
           <h2
-            className={`text-5xl md:text-6xl font-bold bg-gradient-to-r from-purple-900 via-purple-700 to-purple-900 bg-clip-text text-transparent mb-6 ${
+            className={`text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-900 via-purple-700 to-purple-900 bg-clip-text text-transparent mb-4 ${
               language === "zh" ? "font-chinese" : ""
             }`}
-            style={{ fontFamily: language === "zh" ? "inherit" : "'Playfair Display', serif" }}
           >
             {content.title}
           </h2>
           <p
-            className={`text-xl text-slate-700 max-w-3xl mx-auto ${
+            className={`text-xl text-slate-600 max-w-3xl mx-auto ${
               language === "zh" ? "font-chinese" : ""
             }`}
           >
             {content.subtitle}
           </p>
-        </motion.div> */}
+        </motion.div>
 
         {/* Orbit Network System - Breaks out of container for true viewport centering */}
         <div className="relative w-screen left-1/2 -translate-x-1/2">
