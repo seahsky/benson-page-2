@@ -814,18 +814,18 @@ export const content: Record<Language, Content> = {
       subtitle: "",
       channels: [
         {
-          name: "line",
-          label: "LINE",
-          value: "ktuin0918",
-          link: "https://line.me/ti/p/f2z0Vc5Hm_",
-          icon: "MessageSquare",
-        },
-        {
           name: "whatsapp",
           label: "WhatsApp",
           value: "+852 9702 0812",
           link: "https://wa.me/85297020812",
           icon: "MessageCircle",
+        },
+        {
+          name: "line",
+          label: "LINE",
+          value: "ktuin0918",
+          link: "https://line.me/ti/p/f2z0Vc5Hm_",
+          icon: "MessageSquare",
         },
         {
           name: "threads",
@@ -1443,18 +1443,18 @@ export const content: Record<Language, Content> = {
       subtitle: "",
       channels: [
         {
-          name: "line",
-          label: "LINE",
-          value: "ktuin0918",
-          link: "https://line.me/ti/p/f2z0Vc5Hm_",
-          icon: "MessageSquare",
-        },
-        {
           name: "whatsapp",
           label: "WhatsApp",
           value: "+852 9702 0812",
           link: "https://wa.me/85297020812",
           icon: "MessageCircle",
+        },
+        {
+          name: "line",
+          label: "LINE",
+          value: "ktuin0918",
+          link: "https://line.me/ti/p/f2z0Vc5Hm_",
+          icon: "MessageSquare",
         },
         {
           name: "threads",
