@@ -245,51 +245,6 @@ export default function ProfessionalAuthority({
           </div>
         </div>
 
-        {/* Trust Indicators */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12 fade-in-up stagger-4">
-          {[
-            {
-              number: "ICF ACC",
-              label:
-                language === "zh" ? "國際認證" : "International Certification",
-              icon: Award,
-            },
-            {
-              number: "15+",
-              label: language === "zh" ? "年經驗" : "Years Experience",
-              icon: Calendar,
-            },
-            {
-              number: "300+",
-              label: language === "zh" ? "客戶" : "Clients Coached",
-              icon: Users,
-            },
-            {
-              number: "500+",
-              label: language === "zh" ? "引導時數" : "Coaching Hours",
-              icon: GraduationCap,
-            },
-          ].map((stat, index) => (
-            <div
-              key={index}
-              className="text-center p-6 bg-white rounded-lg shadow-sm border border-neutral-100 hover:shadow-md hover:-translate-y-1 transition-all duration-300"
-            >
-              <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
-                <stat.icon className="w-6 h-6 text-primary" />
-              </div>
-              <div className="text-3xl font-bold text-primary mb-2">
-                {stat.number}
-              </div>
-              <div
-                className={`text-sm text-neutral-600 font-medium ${
-                  language === "zh" ? "font-chinese" : ""
-                }`}
-              >
-                {stat.label}
-              </div>
-            </div>
-          ))}
-        </div>
       </div>
     </section>
   );

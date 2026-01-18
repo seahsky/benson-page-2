@@ -8,9 +8,10 @@ interface TopNavigationProps {
   navigation: Navigation
   language: Language
   onLanguageChange: (language: Language) => void
+  subtitle?: string
 }
 
-export default function TopNavigation({ navigation, language, onLanguageChange }: TopNavigationProps) {
+export default function TopNavigation({ navigation, language, onLanguageChange, subtitle }: TopNavigationProps) {
   const [isOpen, setIsOpen] = useState(false)
   const [activeSection, setActiveSection] = useState('home')
 
@@ -70,9 +71,21 @@ export default function TopNavigation({ navigation, language, onLanguageChange }
                   alt="Benson Wong Career Coach Logo"
                   className="w-8 h-8 sm:w-10 sm:h-10 object-contain"
                 />
-                <span className="text-xl font-bold text-primary">
-                  Benson Wong
-                </span>
+                <div className="flex flex-col items-start">
+                  <span className="text-xl font-bold text-primary">
+                    Benson Wong
+                  </span>
+                  {subtitle && (
+                    <span
+                      className={cn(
+                        "text-xs text-muted-foreground -mt-0.5 hidden sm:block",
+                        language === "zh" ? "font-chinese" : ""
+                      )}
+                    >
+                      {subtitle}
+                    </span>
+                  )}
+                </div>
               </button>
             </div>
 

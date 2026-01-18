@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { Button } from '@/components/ui/button'
-import { Badge } from '@/components/ui/badge'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -172,8 +171,7 @@ export default function ContactButtonMenu({
               asChild
               className={cn(
                 'cursor-pointer py-3 px-3 rounded-lg transition-colors',
-                styles.hoverBg,
-                channel.primary && 'bg-primary/5'
+                styles.hoverBg
               )}
             >
               <a
@@ -200,17 +198,6 @@ export default function ContactButtonMenu({
                     )}>
                       {channel.label}
                     </span>
-                    {channel.primary && (
-                      <Badge
-                        variant="credential"
-                        className={cn(
-                          'text-xs px-2 py-0 h-5',
-                          language === 'zh' ? 'font-chinese' : ''
-                        )}
-                      >
-                        {language === 'zh' ? '推薦' : 'Recommended'}
-                      </Badge>
-                    )}
                   </div>
                   <div className={cn(
                     'text-xs text-muted-foreground truncate',

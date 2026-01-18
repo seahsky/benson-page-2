@@ -2,17 +2,21 @@ import { useState } from "react";
 import { content, type Language } from "@/data/content";
 import TopNavigation from "./components/TopNavigation";
 import HeroSection from "./components/HeroSection";
-import CoreBenefits from "./components/CoreBenefits";
-import ServiceShowcase from "./components/ServiceShowcase";
-import PricingSection from "./components/PricingSection";
-import OrbitNetworkTestimonials from "./components/OrbitNetworkTestimonials";
-import SuccessMetrics from "./components/SuccessMetrics";
+import HeroStats from "./components/HeroStats";
+import MyStory from "./components/MyStory";
 import ProfessionalAuthority from "./components/ProfessionalAuthority";
-import AdditionalOfferings from "./components/AdditionalOfferings";
+import LanguageCulture from "./components/LanguageCulture";
+import ServiceComparison from "./components/ServiceComparison";
+import SuccessMetricsVisual from "./components/SuccessMetricsVisual";
+import SessionTopicsGrid from "./components/SessionTopicsGrid";
+import CoreBenefits from "./components/CoreBenefits";
+import OrbitNetworkTestimonials from "./components/OrbitNetworkTestimonials";
+import FAQSection from "./components/FAQSection";
 import CommunityConnection from "./components/CommunityConnection";
 
 export default function ExecutiveWisdom() {
-  const [language, setLanguage] = useState<Language>("en");
+  // Default to Chinese as per plan
+  const [language, setLanguage] = useState<Language>("zh");
   const currentContent = content[language];
 
   return (
@@ -22,33 +26,61 @@ export default function ExecutiveWisdom() {
         navigation={currentContent.navigation}
         language={language}
         onLanguageChange={setLanguage}
+        subtitle={currentContent.hero.subtitle}
       />
 
-      {/* Hero Section */}
+      {/* 1. Hero Section */}
       <section id="home">
         <HeroSection content={currentContent.hero} language={language} />
       </section>
 
-      {/* Professional Authority - Why Benson */}
+      {/* Hero Stats */}
+      <HeroStats stats={currentContent.stats} language={language} />
+
+      {/* 2. Why Benson Section */}
       <section id="why-benson">
+        {/* My Story */}
+        <MyStory content={currentContent.myStory} language={language} />
+
+        {/* Professional Authority */}
         <ProfessionalAuthority
           content={currentContent.authority}
           language={language}
         />
-      </section>
 
-      {/* Core Benefits */}
-      <section id="core-benefits">
-        <CoreBenefits
-          content={currentContent.coreBenefits}
+        {/* Language & Culture */}
+        <LanguageCulture
+          content={currentContent.languageCulture}
           language={language}
         />
       </section>
 
-      {/* Services Showcase */}
+      {/* 3. Services Section */}
       <section id="services">
-        <ServiceShowcase
-          content={currentContent.services}
+        {/* Service Plans Comparison */}
+        <ServiceComparison
+          content={currentContent.servicePlans}
+          language={language}
+        />
+
+        {/* Success Metrics Visual */}
+        <SuccessMetricsVisual
+          stats={currentContent.stats}
+          language={language}
+        />
+
+        {/* Session Topics Grid */}
+        <SessionTopicsGrid
+          topics={currentContent.sessionTopics}
+          language={language}
+        />
+      </section>
+
+      {/* 4. Benefits & Success Stories Section */}
+      <section id="benefits">
+        {/* Core Benefits */}
+        <CoreBenefits
+          content={currentContent.coreBenefits}
           language={language}
         />
       </section>
@@ -61,30 +93,17 @@ export default function ExecutiveWisdom() {
         />
       </section>
 
-      {/* Success Metrics */}
-      <section id="success-metrics">
-        <SuccessMetrics content={currentContent.stats} language={language} />
+      {/* 5. FAQ Section */}
+      <section id="faq">
+        <FAQSection faq={currentContent.faq} language={language} />
       </section>
 
-      {/* Pricing Section - Fees */}
-      <section id="fees">
-        <PricingSection content={currentContent.pricing} language={language} />
-      </section>
-
-      {/* Additional Offerings - Only show if Chinese and items exist */}
-      {language === "zh" &&
-        currentContent.additionalOfferings.courses.length > 0 && (
-          <section id="additional-courses">
-            <AdditionalOfferings
-              content={currentContent.additionalOfferings}
-              language={language}
-            />
-          </section>
-        )}
-
-      {/* Community Connection */}
+      {/* 6. Footer / CTA */}
       <CommunityConnection
-        content={currentContent.contact}
+        content={{
+          title: currentContent.contact.title,
+          footer: currentContent.contact.footer,
+        }}
         language={language}
       />
     </div>

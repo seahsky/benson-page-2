@@ -6,7 +6,6 @@ import {
   Heart,
 } from "lucide-react";
 import type { Language } from "@/data/content";
-import ContactButtonMenu from "@/components/ContactButtonMenu";
 
 interface CoreBenefitsProps {
   content: {
@@ -28,11 +27,6 @@ interface CoreBenefitsProps {
 }
 
 export default function CoreBenefits({ content, language }: CoreBenefitsProps) {
-  const whatsappMessage =
-    language === "zh"
-      ? "您好！我看到了核心收穫介紹，希望能了解如何開始獲得這些職涯提升效果。"
-      : "Hello! I've seen the core benefits and would like to learn how to start gaining these career enhancement effects.";
-
   // Get benefit icon component
   const getBenefitIcon = (iconName: string) => {
     switch (iconName) {
@@ -227,38 +221,6 @@ export default function CoreBenefits({ content, language }: CoreBenefitsProps) {
           </div>
         </div>*/}
 
-        {/* Call to Action */}
-        <div className="text-center fade-in-up stagger-4">
-          <h3
-            className={`text-2xl md:text-3xl font-bold text-neutral-800 mb-4 ${
-              language === "zh" ? "font-chinese" : ""
-            }`}
-          >
-            {language === "zh"
-              ? "準備好獲得這些核心收穫了嗎？"
-              : "Ready to Gain These Core Benefits?"}
-          </h3>
-          <p
-            className={`text-lg text-neutral-600 mb-8 max-w-2xl mx-auto ${
-              language === "zh" ? "font-chinese" : ""
-            }`}
-          >
-            {language === "zh"
-              ? "讓我們透過專業引導，助您實現職涯目標並獲得這些寶貴的收穫。"
-              : "Let us help you achieve your career goals and gain these valuable benefits through professional guidance."}
-          </p>
-          <ContactButtonMenu
-            label={language === "zh"
-              ? "開始獲得這些收穫"
-              : "Start Gaining These Benefits"}
-            language={language}
-            whatsappMessage={whatsappMessage}
-            context="core-benefits-cta"
-            variant="consultation"
-            size="xl"
-            className="shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300"
-          />
-        </div>
       </div>
     </section>
   );
