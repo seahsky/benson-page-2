@@ -19,6 +19,9 @@ interface ProfessionalAuthorityProps {
   content: {
     title: string;
     subtitle: string;
+    experienceBadges?: string[];
+    experienceContent?: string[];
+    specialties?: string[];
     certifications: Array<{
       name: string;
       shortName: string;
@@ -66,6 +69,21 @@ export default function ProfessionalAuthority({
             {content.subtitle}
           </p>
         </div>
+
+        {/* Experience Badges */}
+        {content.experienceBadges && content.experienceBadges.length > 0 && (
+          <div className="flex flex-wrap justify-center gap-4 mb-12 fade-in-up">
+            {content.experienceBadges.map((badge, index) => (
+              <Badge
+                key={index}
+                variant="experience"
+                className={`text-base px-6 py-2 ${language === "zh" ? "font-chinese" : ""}`}
+              >
+                {badge}
+              </Badge>
+            ))}
+          </div>
+        )}
 
         {/* Professional Certifications */}
         <div className="mb-16 fade-in-up stagger-1">
@@ -191,13 +209,18 @@ export default function ProfessionalAuthority({
                   </div>
                 </div>
 
-                <p
-                  className={`text-lg text-neutral-700 leading-relaxed mb-6 ${
-                    language === "zh" ? "font-chinese" : ""
-                  }`}
-                >
-                  {content.experience.background}
-                </p>
+                <div className="space-y-4 mb-6">
+                  {(content.experienceContent || [content.experience.background]).map((paragraph, index) => (
+                    <p
+                      key={index}
+                      className={`text-lg text-neutral-700 leading-relaxed ${
+                        language === "zh" ? "font-chinese" : ""
+                      }`}
+                    >
+                      {paragraph}
+                    </p>
+                  ))}
+                </div>
 
                 <ContactButtonMenu
                   label={language === "zh"
@@ -224,7 +247,7 @@ export default function ProfessionalAuthority({
                 </h4>
 
                 <div className="space-y-4">
-                  {content.experience.specialties.map((specialty, index) => (
+                  {(content.specialties || content.experience.specialties).map((specialty, index) => (
                     <div
                       key={index}
                       className="flex items-center gap-3 p-4 bg-white rounded-lg shadow-sm border border-neutral-100 hover:shadow-md transition-all duration-300"
