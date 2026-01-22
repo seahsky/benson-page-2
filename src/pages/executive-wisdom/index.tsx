@@ -73,6 +73,7 @@ export default function ExecutiveWisdom() {
         <SessionTopicsGrid
           topics={currentContent.sessionTopics}
           language={language}
+          oprahQuote={currentContent.servicePlans.oprahQuote}
         />
       </section>
 

@@ -5,6 +5,7 @@ import {
   Building,
   Brain,
   Shuffle,
+  Quote,
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import type { Language, SessionTopic } from "@/data/content";
@@ -12,6 +13,10 @@ import type { Language, SessionTopic } from "@/data/content";
 interface SessionTopicsGridProps {
   topics: SessionTopic[];
   language: Language;
+  oprahQuote?: {
+    text: string;
+    author: string;
+  };
 }
 
 // Map category to icon
@@ -49,6 +54,7 @@ const categoryColors: Record<string, { bg: string; icon: string; border: string 
 export default function SessionTopicsGrid({
   topics,
   language,
+  oprahQuote,
 }: SessionTopicsGridProps) {
   return (
     <section className="section-padding bg-gradient-to-b from-white to-neutral-50">
@@ -142,6 +148,33 @@ export default function SessionTopicsGrid({
             );
           })}
         </div>
+
+        {/* Oprah Quote - displayed near imposter syndrome topic */}
+        {oprahQuote && (
+          <div className="mt-12 bg-gradient-to-r from-pink-50 to-purple-50 rounded-2xl p-8 border border-pink-200 max-w-3xl mx-auto">
+            <div className="flex items-start gap-4">
+              <div className="w-12 h-12 bg-pink-500 rounded-full flex items-center justify-center flex-shrink-0">
+                <Quote className="w-6 h-6 text-white" />
+              </div>
+              <div className="text-left">
+                <blockquote
+                  className={`text-lg md:text-xl text-neutral-700 italic leading-relaxed mb-3 ${
+                    language === "zh" ? "font-chinese" : ""
+                  }`}
+                >
+                  "{oprahQuote.text}"
+                </blockquote>
+                <cite
+                  className={`text-pink-600 font-semibold ${
+                    language === "zh" ? "font-chinese" : ""
+                  }`}
+                >
+                  — {oprahQuote.author}
+                </cite>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Footer note */}
         <div className="text-center mt-8">

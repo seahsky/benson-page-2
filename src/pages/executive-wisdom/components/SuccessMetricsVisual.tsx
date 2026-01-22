@@ -1,4 +1,4 @@
-import { TrendingUp, Target, ThumbsUp, CheckCircle } from "lucide-react";
+import { TrendingUp, Target, ThumbsUp, CheckCircle, Shield } from "lucide-react";
 import type { Language } from "@/data/content";
 
 interface SuccessMetricsVisualProps {
@@ -9,6 +9,8 @@ interface SuccessMetricsVisualProps {
     maxSessionsDescription: string;
     satisfaction: string;
     satisfactionDescription: string;
+    trust: string;
+    trustDescription: string;
   };
   language: Language;
 }
@@ -42,6 +44,14 @@ export default function SuccessMetricsVisual({
       bgColor: "bg-purple-50",
       textColor: "text-purple-600",
     },
+    {
+      value: stats.trust,
+      description: stats.trustDescription,
+      icon: Shield,
+      color: "from-amber-500 to-amber-600",
+      bgColor: "bg-amber-50",
+      textColor: "text-amber-600",
+    },
   ];
 
   return (
@@ -71,7 +81,7 @@ export default function SuccessMetricsVisual({
         </div>
 
         {/* Metrics Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {metrics.map((metric, index) => {
             const IconComponent = metric.icon;
 
