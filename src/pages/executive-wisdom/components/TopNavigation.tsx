@@ -67,7 +67,7 @@ export default function TopNavigation({ navigation, language, onLanguageChange, 
                 className="flex items-center space-x-3 hover:opacity-80 transition-opacity"
               >
                 <img
-                  src="/images/benson-logo.png"
+                  src="/images/benson-logo.jpg"
                   alt="Benson Wong Career Coach Logo"
                   className="w-8 h-8 sm:w-10 sm:h-10 object-contain"
                 />

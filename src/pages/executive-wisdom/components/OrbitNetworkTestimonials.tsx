@@ -174,7 +174,7 @@ export default function OrbitNetworkTestimonials({
                   {/* Photo Container - Clean Circle */}
                   <div className="relative w-36 h-36 md:w-44 md:h-44">
                     <img
-                      src="/images/benson-logo.png"
+                      src="/images/benson-logo.jpg"
                       alt="Benson Wong - Career Coach"
                       className="w-full h-full rounded-full object-cover border-4 border-white shadow-2xl bg-gradient-to-br from-purple-100 to-purple-50"
                     />

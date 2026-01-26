@@ -66,7 +66,7 @@ export default function MyStory({ content, language }: MyStoryProps) {
                   className="w-full h-auto rounded-lg object-cover aspect-[4/5]"
                   onError={(e) => {
                     // Fallback to logo if profile image doesn't exist
-                    e.currentTarget.src = "/images/benson-logo.png";
+                    e.currentTarget.src = "/images/benson-logo.jpg";
                     e.currentTarget.classList.add("object-contain", "bg-gradient-to-br", "from-purple-100", "to-purple-50", "p-8");
                   }}
                 />

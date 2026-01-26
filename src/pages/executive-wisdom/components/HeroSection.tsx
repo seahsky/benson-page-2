@@ -173,7 +173,7 @@ export default function HeroSection({ content, language }: HeroSectionProps) {
           {/* Right Side - Premium Interactive Light Bulb */}
           <div className="flex justify-center lg:justify-end">
             <InteractiveLightBulb
-              src="/images/benson-logo.png"
+              src="/images/benson-logo.jpg"
               alt="Benson Wong Career Coaching - Interactive Light Bulb Logo"
               language={language}
               size={{

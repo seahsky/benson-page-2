@@ -85,7 +85,7 @@ export const EnhancedHeroLogoDemo: React.FC = () => {
 
             <div className="bg-white rounded-2xl p-8 shadow-xl">
               <DraggableHeroLogo
-                src="/images/benson-logo.png"
+                src="/images/benson-logo.jpg"
                 alt="Enhanced Benson Wong Career Coaching Logo"
                 language="en"
                 size={{
